@@ -1,30 +1,207 @@
+
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Saim Raza Online CV</title>
-		<!-- link to main stylesheet -->
-		<link rel="stylesheet" type="text/css" href="/css/main.css">
-	</head>
-	<body>
-		<nav>
-    		<ul>
-        		<li><a href="/">Home</a></li>
-	        	<li><a href="/about">About</a></li>
-        		<li><a href="/cv">CV</a></li>
-        		<li><a href="/blog">Blog</a></li>
-    		</ul>
-		</nav>
-		<div class="container">
-    		<div class="blurb">
-        		<h1>Hi there, I'm Saim Raza!</h1>
-				<p>Catchy phrase</a></p>
-    		</div><!-- /.blurb -->
-		</div><!-- /.container -->
-		<footer>
-    		<ul>
-        		<li><a href="mailto:saimorsaim@gmail.com">email</a></li>
-        		<li><a href="https://github.com/rsaim">github.com/rsaim</a></li>
+<html lang="fr"><head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Saim Raza - Online CV</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Fichiers CSS -->
+	<link rel="stylesheet" href="css/reset.css">
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="css/cv.css" media="screen">
+	<![endif]-->
+	<link rel="stylesheet" media="screen and (max-width:480px)" href="css/mobile.css">
+	<link rel="stylesheet" media="screen and (min-width:481px)" href="css/cv.css">
+	<link rel="stylesheet" media="print" href="css/print.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<!-- Header -->
+<header role="banner">
+	<div class="container_16">
+		<hgroup>
+			<h1>Saim Raza</h1>
+			<h3>Senior Python Developer.</h3>
+			<div>
+				<a href="mailto:saimorsaim@gmail.com"><span class="glyphicon glyphicon-envelope fa-fw"></span>&nbsp;saimorsaim@gmail.com</a>
+				<a href="tel:s+919971865400"><span class="glyphicon glyphicon-phone"></span>&nbsp;(+91) 9971865400)</a>
+				<br><br>
+				<a href="https://drive.google.com/file/d/13v1nz-OuUG-U-A49HUIDGwvQxAdisdOb/view?usp=sharing"
+						class="btn btn-info btn-block" role="button">
+					Download PDF Version</a>
+			</div>
+		</hgroup>
+
+		<figure>
+			<img src="css/saim_profile_pic.jpeg" alt="Saim Raza">
+		</figure>
+
+	</div>
+</header>
+
+<!-- Contact -->
+<section class="contactform clearfix">
+	<div class="container_16">
+		<h3>Contactez-moi</h3>
+		<p>Remplissez le formulaire ci-dessous afin de m'envoyer un message. Je vous répondrais dans les plus bref délai.
+			<br><em>Tous les champs sont requis.</em></p>
+		<form novalidate="novalidate" method="post" action="#" name="contact" class="grid_16">
+			<p class="grid_10"><textarea name="message" placeholder="Votre message" class="required"></textarea></p>
+			<p class="grid_6">
+				<input name="nom" placeholder="Nom - Prénom" class="required" type="text">
+				<input name="email" placeholder="Adresse email" class="required" type="email">
+				<input name="envoi" value="Envoyer le message" class="required" type="submit">
+				<span class="messageform"></span>
+			</p>
+		</form>
+	</div>
+</section>
+
+<!-- Corps -->
+<section role="main" class="container_16 clearfix">
+	<div class="grid_16">
+		<!-- A propos -->
+		<div class="grid_8 apropos">
+			<h3>About me</h3>
+			<p>I am currently a Python developer at D.E. Shaw India. My responsibilities include developing and maintaining
+				core infrastructure for various trading and data analytics platforms.</p>
+
+			<p>I have also researched on the topic of Object Tracking in video sequences. My areas of interest include computer vision, image processing, object detection/segmentation, human-visual perception, scene understanding, computer graphics, and machine learning.</p>
+		</div>
+
+		<!-- Competence -->
+		<div class="grid_8 competences">
+			<h3>Competencies</h3>
+			<ul class="barres">
+				<li data-skills="85">Python<span style="width: 85%;"></span></li>
+				<li data-skills="60">C++<span style="width: 60%;"></span></li>
+				<li data-skills="75">Linux<span style="width: 75%;"></span></li>
+				<li data-skills="40">Shell Scripting<span style="width: 40%;"></span></li>
+				<li data-skills="80">Data Structure and Algorithm<span style="width: 80%;"></span></li>
 			</ul>
-		</footer>
-	</body>
-</html>
+		</div>
+	</div>
+
+	<!-- Experiences -->
+	<div class="grid_16 experiences">
+		<h3>Experiences</h3>
+		<ul>
+			<li>
+				<h4><strong>Senior Member of Technical Staff</strong></h4>
+				<h5>DE Shaw India Software Pvt. Ltd, Hyderabad, India</h5>
+				<span class="lieu">Hyderabad</span>
+				<span class="dates">July, 2016 - Present</span>
+
+				<p>Design of various Python frameworks to overcome shortcoming of native Python interpreter. Also
+					worked on various libraries for data analytics, caching, non-linear optimization, persistence, and
+					testing. I was also involved in migration of the production codebase to be polyglot for Python 2 to
+					3 i.e. it runs under both the versions and is cross-compatible.
+				</p>
+			</li>
+			<li>
+				<h4><strong>Research Assistant (Part Time)</strong> </h4>
+				<h5> Defense Research and Development Organization (D.R.D.O.)</h5>
+				<span class="lieu">Delhi</span>
+				<span class="dates">Jun, 2015 - May, 2016 (1 year)</span>
+				<p>Worked under Dr. Gurjit Singh Walia (Ph.D.), Scientist, Scientific Analysis Group (SAG) on designing
+					an algorithm for robust tracking of objects in colored video sequences. We devised a novel technique
+					to resolve the conflict between multiple cues as a part of the project undertaken.</p>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Formations -->
+	<div class="grid_16 formations">
+		<h3>Education</h3>
+		<ul>
+			<li>
+				<h4><strong>Delhi Technological University</strong></h4>
+				<h5>Mathematics and Computing Engineering</h5>
+				<span class="lieu">Delhi</span>
+				<span class="dates">2012 - 2016</span>
+
+				<p>
+					This program is an amalgamation of Mathematics with Computer Science and Financial Engineering. The curriculum has been designed to meet the needs of sophisticated mathematics for modern scientific investigations and technological developments.
+				</p>
+				<p><b>Coursework</b>:
+					<br>
+					<i>Computer Science</i>: Data Structure and Algorithms | Operating Systems | Database Management Systems | Computer Graphics |
+					Object Oriented Programming | Network Security
+					<br><br>
+					<i>Applied Mathematics</i>: Optimization Techniques | Mathematical Modeling and Simulation | Applied Graph Theory | Stochastic
+					Processes | Matrix Computation | Modern Algebra | Linear Algebra | Operations Research | Scientific Computing.
+				</p>
+			</li>
+		</ul>
+	</div>
+
+
+	<!-- Formations -->
+	<div class="grid_16 formations">
+		<h3>Publication</h3>
+		<ul>
+			<strong>
+				<a href="https://www.sciencedirect.com/science/article/pii/S0957417417300842">A novel approach of multi-stage
+					tracking for precise localization of target in video sequences.
+				</a>
+			</strong>
+			<br><br>
+			<p><b>Abstract: </b>Visual tracking methods are mostly based on single stage state estimation that limitedly caters to precise localization of target under dynamic environment such as occlusion, object deformation, rotation, scaling and cluttered background. In order to address these issues, we introduce a novel multi-stage coarse-to-fine tracking framework with quick adaptation to environment dynamics. The key idea of our work is to propose two-stage estimation of object state and to develop an adaptive fusion model. Coarse estimation of object state is achieved using optical flow and multiple fragments are generated around this approximation. Precise localization of object is obtained through evaluation of these fragments using three complementary cues. Adaptation of proposed tracker to dynamic environment changes is quick due to incorporation of context sensitive cue reliability, which encompass its direct application for development of expert system for video surveillance. In addition, proposed framework caters to object rotation and scaling through a random walk state model and rotation invariant features. The proposed tracker is evaluated over eight- benchmarked color video sequences and competitive results are obtained. As an average of the outcomes, we achieved mean center location error (in pixels) of 6.791 and F-measure of 0.78. Results demonstrate that proposed tracker not only outperforms various state-of-the-art trackers but also effectively caters to various dynamic environments.
+			</p>
+			<b>Journal</b>: <a href="https://www.sciencedirect.com/journal/expert-systems-with-applications">
+			Expert Systems with Application (Elsevier).</a>
+		</ul>
+	</div>
+
+	<!-- Formations -->
+	<div class="grid_16 formations">
+		<h3>Award/Recognition</h3>
+		<ul>
+			<strong>
+				<a href="https://www.google.com/url?q=http://dtu.ac.in/Web/notice/2018/sep/file0913.pdf&ust=1558373880000000&usg=AFQjCNHaynuAziFIgnCtoVxNZbosXF8d5A&hl=en-GB">
+					Commendable Research Awards (2018)
+				</a>
+			</strong>
+			by Delhi Technological University.
+
+			<p>The paper was also selected from the pool of research work done by undergraduate, graduate and Ph.D.
+				scholars at Delhi Technological University (DTU). This award is presented to researchers in the
+				recognition of the importance of the published research work and to celebrate the individual excellence
+				in research.
+			</p>
+			<b>Journal</b>: <a href="https://www.sciencedirect.com/journal/expert-systems-with-applications">
+			Expert Systems with Application (Elsevier).</a>
+		</ul>
+	</div>
+</section>
+
+<!-- Contact -->
+<div align="center">
+	<a href="https://www.facebook.com/saimorraza" class="fa fa-facebook"></a>
+	<a href="#" class="fa fa-google"></a>
+	<a href="https://www.linkedin.com/in/raza-saim/" class="fa fa-linkedin"></a>
+</div>
+
+<!-- Scripts JavaScript -->
+<script src="css/jquery-1.js"></script>
+<script src="css/validate.js"></script>
+<!--[if lt IE 9]>
+<script src="scripts/placeholder.js"></script>
+<![endif]-->
+<script src="css/plugins.js"></script>
+
+</body></html>
+
+<!--Source: http://design.bi/download/?file=518-->
