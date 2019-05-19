@@ -62,9 +62,9 @@
 /* Header
 **********/
 	header[role=banner] {
-		background:#fff;
+		background:#dddddd96;
 		border-bottom:4px solid #33a4c9;
-		padding: 19px 0;
+		padding: 14px 0;
 		overflow: hidden;
 	}
 	
