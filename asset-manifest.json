@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/rsaim/portfolio/static/css/main.e9250d29.css",
+    "main.js": "/rsaim/portfolio/static/js/main.f47b4686.js",
+    "static/js/787.1ed0c42c.chunk.js": "/rsaim/portfolio/static/js/787.1ed0c42c.chunk.js",
+    "static/media/saim-avatar.png": "/rsaim/portfolio/static/media/saim-avatar.2e7b871ce8d0f3509114.png",
+    "static/media/codeEditor.png": "/rsaim/portfolio/static/media/codeEditor.ba9458794dca1c746ef2.png",
+    "static/media/blog.png": "/rsaim/portfolio/static/media/blog.52102140f369ea233010.png",
+    "static/media/Saim Raza Resume.pdf": "/rsaim/portfolio/static/media/Saim Raza Resume.1822b4323a857781d77c.pdf",
+    "static/media/chatify.png": "/rsaim/portfolio/static/media/chatify.9373eddae1a258056c35.png",
+    "static/media/leaf.png": "/rsaim/portfolio/static/media/leaf.4c15d6eb3fc75cfef85b.png",
+    "static/media/home-main.svg": "/rsaim/portfolio/static/media/home-main.541f8179af8209ce03ccf2178fe62dbf.svg",
+    "static/media/about.png": "/rsaim/portfolio/static/media/about.aee0f771fbfc1e7b8fa8.png",
+    "static/media/suicide.png": "/rsaim/portfolio/static/media/suicide.b72f1f9ffeb4775a7803.png",
+    "static/media/home-bg.jpg": "/rsaim/portfolio/static/media/home-bg.dc52d5d40a40b13154b0.jpg",
+    "static/media/saim_raza_logo2.png": "/rsaim/portfolio/static/media/saim_raza_logo2.afff236c17f31d2d62f8.png",
+    "static/media/emotion.jpeg": "/rsaim/portfolio/static/media/emotion.e92e314a236f65bb89af.jpeg",
+    "static/media/pre.svg": "/rsaim/portfolio/static/media/pre.d4812f51c8c80976eaab.svg",
+    "index.html": "/rsaim/portfolio/index.html",
+    "main.e9250d29.css.map": "/rsaim/portfolio/static/css/main.e9250d29.css.map",
+    "main.f47b4686.js.map": "/rsaim/portfolio/static/js/main.f47b4686.js.map",
+    "787.1ed0c42c.chunk.js.map": "/rsaim/portfolio/static/js/787.1ed0c42c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e9250d29.css",
+    "static/js/main.f47b4686.js"
+  ]
+}
