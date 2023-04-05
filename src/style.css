@@ -336,6 +336,11 @@ button:focus {
   text-align: left;
 }
 
+.home-about-body a {
+  color: #c76ff0;
+  text-decoration: dotted;
+}
+
 .home-about-social {
   text-align: center !important;
   padding-top: 25px;

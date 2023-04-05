@@ -19,13 +19,24 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-              I have been crunching code for Wall Street for over half-a-decade @ <b className="purple"> D. E. Shaw & Co. </b>
+              Currently, I'm interning at <b className="purple">
+                <a href="https://www.skillet.ai/" rel="noreferrer" target="_blank"> skillet.ai </a>
+              </b>
+              and pursuing Master in Computer Science @ <b className="purple">
+                <a href="https://en.wikipedia.org/wiki/Courant_Institute_of_Mathematical_Sciences" rel="noreferrer" target="_blank"> New York University (Courant)  </a>
+              </b>
               <br />
               <br />
-              Previously, I have worked at <b className="purple">NASA, LiveRamp Holdings</b> and <b className="purple"> DRDO</b>
-              <br />
-              <br />
-              Currently, I'm pursuing Master in Computer Science @ <b className="purple"> New York University (Courant) </b>
+              Previously, I spent over half-a-decade crunching code for Wall Street @ <b className="purple">
+                <a href="https://www.deshaw.com/" rel="noreferrer" target="_blank">D. E. Shaw & Co. </a>
+              </b>I have also worked at <b className="purple">
+                <a href="https://www.nasa.gov/" rel="noreferrer" target="_blank"> NASA </a>,
+                <a href="https://liveramp.com/" rel="noreferrer" target="_blank"> LiveRamp, </a>
+                </b>
+                 and
+                <b>
+                <a href="https://www.drdo.gov.in/" rel="noreferrer" target="_blank"> DRDO. </a>
+              </b>
               <br />
               <br />
               I am highly profiencient in core Python and classics like <b className="purple"> Javascript, C++, and JAVA </b>
@@ -36,7 +47,7 @@ function Home2() {
           </Col>
           <Col md={4} className="myAvtar">
             <Tilt>
-              <img  src={homeLogo} className="img-fluid Avatar" alt="avatar" />
+              <img src={homeLogo} className="img-fluid Avatar" alt="avatar" />
             </Tilt>
           </Col>
         </Row>

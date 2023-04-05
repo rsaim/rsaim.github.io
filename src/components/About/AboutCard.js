@@ -11,14 +11,14 @@ function AboutCard() {
             Hi Everyone,
             <br />
             <br />
-            I am <span className="purple">Saim Raza </span> from <span className="purple"> New York City, US.</span>
+            I am <span className="purple">Saim Raza </span> from <span className="purple"> New York City</span>
             <br />
-            <br />I graduared with B. Tech. in Mathematics and Computing from <span className="purple">Delhi Technological University (DTU)</span> in 2016.
+            <br />I graduared with B. Tech. in Mathematics and Computing from <span className="purple">Delhi Technological University (DTU)</span> in 2016
             <br />
-            <br />Currently, I'm studying MS in Computer Science at <span className="purple">New York University (NYU) Courant</span>. I'll graduate in May 2023.
+            <br />Currently, I'm studying MS in Computer Science at <span className="purple">New York University (NYU) Courant</span>. My expected graduation is May 2023
             <br />
             <br />
-            Apart from coding, some other activities that I love to do!
+            Apart from coding, some following are some of activities that I love to do!
           </p>
           <ul>
             <li className="about-activity">
