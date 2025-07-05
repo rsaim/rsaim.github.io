@@ -103,15 +103,6 @@ function Home() {
                 — crafting systems that are not only intelligent, but also
                 resilient, reliable, and scalable at scale 📈.
               </p>
-
-              <div style={{ paddingTop: "20px", textAlign: "center" }}>
-                <img
-                  src={homeLogo}
-                  className="img-fluid Avatar"
-                  alt="avatar"
-                  style={{ maxHeight: "300px" }}
-                />
-              </div>
             </Col>
           </Row>
         </Container>
