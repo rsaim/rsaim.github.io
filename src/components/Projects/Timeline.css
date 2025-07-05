@@ -66,7 +66,7 @@
 
 /* React Flow Container */
 .timeline-flow-container {
-  height: 500px;
+  height: 380px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
@@ -79,6 +79,11 @@
 /* React Flow Custom Styles */
 .react-flow__viewport {
   background: transparent !important;
+}
+
+.react-flow__renderer {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .react-flow__controls {
@@ -111,7 +116,7 @@
 /* Timeline Flow Node */
 .timeline-flow-node {
   width: 320px;
-  min-height: 200px;
+  min-height: 180px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(168, 85, 247, 0.3);
   border-radius: 16px;
@@ -158,7 +163,7 @@
 }
 
 .timeline-flow-node.expanded {
-  min-height: 300px;
+  min-height: 260px;
 }
 
 /* Timeline Flow Content */
@@ -468,11 +473,16 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
   .timeline-flow-container {
-    height: 480px;
+    height: 360px;
   }
 
   .timeline-flow-node {
     width: 300px;
+    min-height: 170px;
+  }
+
+  .timeline-flow-node.expanded {
+    min-height: 240px;
   }
 }
 
@@ -490,13 +500,13 @@
   }
 
   .timeline-flow-container {
-    height: 420px;
+    height: 320px;
     margin: 0 20px;
   }
 
   .timeline-flow-node {
     width: 280px;
-    min-height: 180px;
+    min-height: 160px;
   }
 
   .timeline-flow-content {
@@ -504,19 +514,19 @@
   }
 
   .timeline-flow-node.expanded {
-    min-height: 260px;
+    min-height: 220px;
   }
 }
 
 @media (max-width: 640px) {
   .timeline-flow-container {
-    height: 380px;
+    height: 300px;
     margin: 0 15px;
   }
 
   .timeline-flow-node {
     width: 260px;
-    min-height: 160px;
+    min-height: 150px;
   }
 
   .timeline-flow-content {
@@ -526,17 +536,21 @@
   .timeline-title {
     font-size: 2rem;
   }
+
+  .timeline-flow-node.expanded {
+    min-height: 200px;
+  }
 }
 
 @media (max-width: 480px) {
   .timeline-flow-container {
-    height: 350px;
+    height: 280px;
     margin: 0 10px;
   }
 
   .timeline-flow-node {
     width: 240px;
-    min-height: 150px;
+    min-height: 140px;
   }
 
   .timeline-flow-content {
@@ -563,6 +577,10 @@
   .timeline-flow-skill {
     font-size: 0.6rem;
     padding: 3px 6px;
+  }
+
+  .timeline-flow-node.expanded {
+    min-height: 180px;
   }
 }
 
