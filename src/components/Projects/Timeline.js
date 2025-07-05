@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Timeline.css";
 
 function Timeline() {
   const [visibleItems, setVisibleItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const timelineRef = useRef(null);
 
   const timelineData = [
     {
@@ -27,7 +29,7 @@ function Timeline() {
       color: "#a855f7",
     },
     {
-      id: 1,
+      id: 2,
       year: "2024",
       type: "work",
       title: "Senior Software Engineer",
@@ -39,7 +41,7 @@ function Timeline() {
       color: "#a855f7",
     },
     {
-      id: 2,
+      id: 3,
       year: "2023",
       type: "education",
       title: "M.S. in Computer Science",
@@ -51,19 +53,19 @@ function Timeline() {
       color: "#d946ef",
     },
     {
-      id: 8,
+      id: 4,
       year: "2023",
       type: "work",
       title: "Founding Engineer",
       company: "skillet.ai",
       location: "San Francisco, CA",
       description: "DeFi and NFT Marketplace",
-      skills: ["Etherium", "Smart Contracts", "Decentralized Finance"],
+      skills: ["Ethereum", "Smart Contracts", "Decentralized Finance"],
       icon: "🧠",
       color: "#d946ef",
     },
     {
-      id: 6,
+      id: 5,
       year: "2022",
       type: "work",
       title: "Research Intern",
@@ -81,7 +83,7 @@ function Timeline() {
       color: "#d946ef",
     },
     {
-      id: 3,
+      id: 6,
       year: "2016 - 2021",
       type: "work",
       title: "Tech Lead",
@@ -93,7 +95,7 @@ function Timeline() {
       color: "#a855f7",
     },
     {
-      id: 4,
+      id: 7,
       year: "2020",
       type: "achievement",
       title: "PyCon India 2020 Speaker",
@@ -105,7 +107,7 @@ function Timeline() {
       color: "#d946ef",
     },
     {
-      id: 9,
+      id: 8,
       year: "2016 - 2017",
       type: "work",
       title: "Research Associate",
@@ -117,7 +119,7 @@ function Timeline() {
       color: "#a855f7",
     },
     {
-      id: 10,
+      id: 9,
       year: "2016",
       type: "education",
       title: "Bachelor of Technology",
@@ -140,7 +142,10 @@ function Timeline() {
           }
         });
       },
-      { threshold: 0.3 }
+      {
+        threshold: 0.2,
+        rootMargin: "50px 0px -100px 0px",
+      }
     );
 
     const timelineItems = document.querySelectorAll(".timeline-item");
@@ -148,6 +153,33 @@ function Timeline() {
 
     return () => observer.disconnect();
   }, []);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && selectedItem) {
+        setSelectedItem(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [selectedItem]);
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    // Add haptic feedback on supported devices
+    if (navigator.vibrate) {
+      navigator.vibrate(50);
+    }
+  };
+
+  const handleItemKeyDown = (e, item) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleItemClick(item);
+    }
+  };
 
   const getTypeIcon = (type) => {
     switch (type) {
@@ -176,72 +208,106 @@ function Timeline() {
   };
 
   return (
-    <Container fluid className="timeline-section" id="timeline">
-      <Container>
-        <div className="timeline-header">
-          <h2 className="timeline-title">
-            Professional <strong className="purple">Journey</strong>
-          </h2>
-        </div>
+    <Container
+      fluid
+      className="timeline-section"
+      id="timeline"
+      ref={timelineRef}
+    >
+      <div className="timeline-header">
+        <h2 className="timeline-title">
+          Professional <strong className="purple">Journey</strong>
+        </h2>
+        <p className="timeline-subtitle">
+          A comprehensive overview of my career milestones and achievements
+        </p>
+      </div>
 
-        <div className="timeline-container">
-          <div className="timeline-grid">
-            {timelineData.map((item, index) => (
-              <div key={item.id} className="timeline-wrapper">
-                <div
-                  className={`timeline-item ${
-                    visibleItems.includes(item.id) ? "visible" : ""
-                  }`}
-                  data-id={item.id}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="timeline-content">
-                    <div
-                      className="timeline-icon"
-                      style={{ backgroundColor: getTypeColor(item.type) }}
-                    >
-                      {item.icon}
+      <div className="timeline-container">
+        <div className="timeline-grid">
+          {timelineData.map((item, index) => (
+            <div key={item.id} className="timeline-wrapper">
+              <div
+                className={`timeline-item ${
+                  visibleItems.includes(item.id) ? "visible" : ""
+                } ${selectedItem?.id === item.id ? "selected" : ""}`}
+                data-id={item.id}
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => handleItemClick(item)}
+                onKeyDown={(e) => handleItemKeyDown(e, item)}
+                tabIndex={0}
+                role="button"
+                aria-label={`${item.title} at ${item.company}`}
+                aria-expanded={selectedItem?.id === item.id}
+              >
+                <div className="timeline-content">
+                  <div
+                    className="timeline-icon"
+                    style={{ backgroundColor: getTypeColor(item.type) }}
+                    aria-hidden="true"
+                  >
+                    {item.icon}
+                  </div>
+
+                  <div className="timeline-card">
+                    <div className="timeline-header-card">
+                      <div
+                        className="timeline-year"
+                        aria-label={`Year: ${item.year}`}
+                      >
+                        {item.year}
+                      </div>
+                      <div
+                        className="timeline-type"
+                        aria-label={`Type: ${item.type}`}
+                      >
+                        {getTypeIcon(item.type)}{" "}
+                        {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
+                      </div>
                     </div>
 
-                    <div className="timeline-card">
-                      <div className="timeline-header-card">
-                        <div className="timeline-year">{item.year}</div>
-                        <div className="timeline-type">
-                          {getTypeIcon(item.type)}{" "}
-                          {item.type.charAt(0).toUpperCase() +
-                            item.type.slice(1)}
-                        </div>
-                      </div>
+                    <h3 className="timeline-card-title">{item.title}</h3>
+                    <h4 className="timeline-company">{item.company}</h4>
+                    <p className="timeline-location">📍 {item.location}</p>
 
-                      <h3 className="timeline-card-title">{item.title}</h3>
-                      <h4 className="timeline-company">{item.company}</h4>
-                      <p className="timeline-location">📍 {item.location}</p>
+                    <p className="timeline-description">{item.description}</p>
 
-                      <p className="timeline-description">{item.description}</p>
-
-                      <div className="timeline-skills">
-                        {item.skills.map((skill, skillIndex) => (
-                          <span key={skillIndex} className="timeline-skill">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
+                    <div
+                      className="timeline-skills"
+                      role="list"
+                      aria-label="Skills"
+                    >
+                      {item.skills.map((skill, skillIndex) => (
+                        <span
+                          key={skillIndex}
+                          className="timeline-skill"
+                          role="listitem"
+                          aria-label={`Skill: ${skill}`}
+                        >
+                          {skill}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
-
-                {/* Arrow connectors */}
-                {index < timelineData.length - 1 && (
-                  <div className="timeline-arrow horizontal">
-                    <div className="arrow-line"></div>
-                    <div className="arrow-head">→</div>
-                  </div>
-                )}
               </div>
-            ))}
-          </div>
+
+              {/* Arrow connectors */}
+              {index < timelineData.length - 1 && (
+                <div className="timeline-arrow horizontal" aria-hidden="true">
+                  <div className="arrow-line"></div>
+                  <div className="arrow-head">→</div>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
-      </Container>
+      </div>
+
+      {/* Enhanced click indicator */}
+      <div className="timeline-interaction-hint" aria-hidden="true">
+        <p>Click on any tile to explore details</p>
+      </div>
     </Container>
   );
 }
