@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
@@ -15,8 +14,6 @@ import {
   AiFillGithub,
   AiFillInstagram,
 } from "react-icons/ai";
-
-import { CgFileDocument } from "react-icons/cg";
 import { FaLinkedinIn, FaStackOverflow } from "react-icons/fa";
 
 function NavBar() {
@@ -86,80 +83,46 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/resume"
-                onClick={() => updateExpanded(false)}
-              >
-                <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
-              </Nav.Link>
-            </Nav.Item>
-
             {/* Divider */}
             <Nav.Item className="nav-divider">
               <span className="divider-line"></span>
             </Nav.Item>
 
             {/* Social Links */}
-            <Nav.Item className="social-links">
-              <Nav.Link
+            <div className="social-links">
+              <a
                 href="https://github.com/rsaim"
                 target="_blank"
                 rel="noreferrer"
                 className="social-link"
-                title="GitHub"
               >
                 <AiFillGithub />
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item className="social-links">
-              <Nav.Link
-                href="https://www.linkedin.com/in/raza-saim/"
+              </a>
+              <a
+                href="https://www.linkedin.com/in/rsaim/"
                 target="_blank"
                 rel="noreferrer"
                 className="social-link"
-                title="LinkedIn"
               >
                 <FaLinkedinIn />
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item className="social-links">
-              <Nav.Link
+              </a>
+              <a
                 href="https://stackoverflow.com/users/rsaim"
                 target="_blank"
                 rel="noreferrer"
                 className="social-link"
-                title="Stack Overflow"
               >
                 <FaStackOverflow />
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item className="social-links">
-              <Nav.Link
+              </a>
+              <a
                 href="https://www.instagram.com/rsa.im/"
                 target="_blank"
                 rel="noreferrer"
                 className="social-link"
-                title="Instagram"
               >
                 <AiFillInstagram />
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item className="fork-btn">
-              <Button
-                href="https://github.com/rsaim"
-                target="_blank"
-                className="fork-btn-inner"
-              >
-                <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
-                <AiFillStar style={{ fontSize: "1.1em" }} />
-              </Button>
-            </Nav.Item>
+              </a>
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>
