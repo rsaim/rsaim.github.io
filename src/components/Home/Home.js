@@ -1,8 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import homeLogo from "../../Assets/home-main.svg";
 import myImg from "../../Assets/saim-avatar.png";
-import laptopImg from "../../Assets/about.png";
 import Particle from "../Particle";
 import TypewriterIntro from "./Type";
 import Projects from "../Projects/Projects";
@@ -110,8 +108,8 @@ function Home() {
       <div style={{ marginTop: "-30px" }}>
         <Timeline />
         <Projects />
-        <Github />
         <TechStack />
+        <Github />
       </div>
     </section>
   );

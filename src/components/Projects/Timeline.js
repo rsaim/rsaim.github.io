@@ -332,7 +332,7 @@ function Timeline() {
     <Container fluid className="timeline-section" id="timeline">
       <div className="timeline-header">
         <h2 className="timeline-title">
-          Professional <strong className="purple">Journey</strong>
+          Career <strong className="purple">Timeline</strong>
         </h2>
         <p className="timeline-subtitle">Career • Education • Milestones</p>
       </div>
