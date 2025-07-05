@@ -680,8 +680,12 @@ button:focus {
 .project-list-image {
   position: relative;
   overflow: hidden;
-  width: 280px;
-  min-width: 280px;
+   {
+     {
+      /* width: 280px;
+  min-width: 280px; */
+    }
+  }
   height: 100%;
   background: linear-gradient(
     135deg,
@@ -692,7 +696,7 @@ button:focus {
 
 .project-list-img {
   width: 100%;
-  height: 100%;
+  height: 250px;
   object-fit: cover;
   border-radius: 0;
   padding: 0;
