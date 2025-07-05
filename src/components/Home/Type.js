@@ -1,23 +1,22 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 
-function Type() {
+function TypewriterIntro() {
   return (
     <Typewriter
       options={{
         strings: [
-          "Senior Software Engineer",
-          "Backend/Full Stack Developer",
-          "GenAI & ML Engineer",
+          "Software Engineer focussed on Backend and GenAI systems",
           "Core Python Expert",
           "Open Source Contributor",
         ],
         autoStart: true,
         loop: true,
         deleteSpeed: 10,
+        cursor: "|",
       }}
     />
   );
 }
 
-export default Type;
+export default TypewriterIntro;
