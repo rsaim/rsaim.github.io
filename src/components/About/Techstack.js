@@ -3,9 +3,14 @@ import { Container } from "react-bootstrap";
 
 function TechStack() {
   return (
-    <Container fluid className="about-section" id="skills">
+    <Container
+      fluid
+      className="about-section"
+      id="skills"
+      style={{ paddingTop: "20px", paddingBottom: "20px" }}
+    >
       <Container>
-        <h3 style={{ textAlign: "center", marginBottom: "30px" }}>
+        <h3 style={{ textAlign: "center", marginBottom: "20px" }}>
           Languages and Tools:
         </h3>
         <p
@@ -14,8 +19,8 @@ function TechStack() {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            gap: "20px",
-            marginBottom: "40px",
+            gap: "15px",
+            marginBottom: "25px",
           }}
         >
           <a href="https://www.python.org" target="_blank" rel="noreferrer">
@@ -233,7 +238,7 @@ function TechStack() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "30px",
+            gap: "20px",
           }}
         >
           <img
