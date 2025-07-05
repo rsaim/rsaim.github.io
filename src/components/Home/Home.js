@@ -107,10 +107,12 @@ function Home() {
         </Container>
       </Container>
 
-      <Timeline />
-      <Projects />
-      <Github />
-      <TechStack />
+      <div style={{ marginTop: "-30px" }}>
+        <Timeline />
+        <Projects />
+        <Github />
+        <TechStack />
+      </div>
     </section>
   );
 }
