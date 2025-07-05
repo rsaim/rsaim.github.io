@@ -270,7 +270,10 @@ function Timeline() {
 
   // Convert timeline data to React Flow nodes and edges
   const createNodesAndEdges = useCallback(() => {
-    const nodes = timelineData.map((item, index) => ({
+    // Reverse the timeline data to show chronological progression (oldest to newest)
+    const reversedTimelineData = [...timelineData].reverse();
+
+    const nodes = reversedTimelineData.map((item, index) => ({
       id: item.id.toString(),
       type: "timelineNode",
       position: {
@@ -278,28 +281,24 @@ function Timeline() {
         y: 0, // All at the same vertical level
       },
       data: item,
-      draggable: true,
+      draggable: false,
     }));
 
     const edges = [];
-    for (let i = 0; i < timelineData.length - 1; i++) {
+    for (let i = 0; i < reversedTimelineData.length - 1; i++) {
       edges.push({
-        id: `e${timelineData[i].id}-${timelineData[i + 1].id}`,
-        source: timelineData[i].id.toString(),
-        target: timelineData[i + 1].id.toString(),
+        id: `e${reversedTimelineData[i].id}-${reversedTimelineData[i + 1].id}`,
+        source: reversedTimelineData[i].id.toString(),
+        target: reversedTimelineData[i + 1].id.toString(),
         animated: true,
         style: {
           stroke: "#a855f7",
-          strokeWidth: 3,
-          filter: "drop-shadow(0 0 8px rgba(168, 85, 247, 0.6))",
+          strokeWidth: 4,
+          filter: "drop-shadow(0 0 12px rgba(168, 85, 247, 0.8))",
+          opacity: 1,
         },
-        type: "smoothstep",
-        markerEnd: {
-          type: "arrowclosed",
-          color: "#d946ef",
-          width: 25,
-          height: 25,
-        },
+        type: "straight",
+        markerEnd: "arrowclosed",
         label: "→",
         labelStyle: {
           fontSize: "16px",
@@ -310,11 +309,12 @@ function Timeline() {
           borderRadius: "12px",
           border: "1px solid rgba(255, 255, 255, 0.2)",
         },
-        labelBgStyle: {
-          fill: "transparent",
-        },
+        labelBgStyle: {},
       });
     }
+
+    console.log("Generated edges:", edges);
+    console.log("Generated nodes:", nodes.length);
 
     return { nodes, edges };
   }, []);
@@ -334,9 +334,7 @@ function Timeline() {
         <h2 className="timeline-title">
           Professional <strong className="purple">Journey</strong>
         </h2>
-        <p className="timeline-subtitle">
-          A comprehensive overview of my career milestones and achievements
-        </p>
+        <p className="timeline-subtitle">Career • Education • Milestones</p>
       </div>
 
       <div className="timeline-flow-container">
@@ -378,10 +376,7 @@ function Timeline() {
           />
           <Panel position="bottom-center">
             <div className="timeline-interaction-hint">
-              <p>
-                Click on nodes to expand details • Drag to rearrange • Use
-                controls to navigate
-              </p>
+              <p>Click on nodes to expand details • Use controls to navigate</p>
             </div>
           </Panel>
         </ReactFlow>

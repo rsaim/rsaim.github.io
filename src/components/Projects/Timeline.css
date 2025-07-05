@@ -86,6 +86,19 @@
   height: 100% !important;
 }
 
+/* Force Edge Visibility */
+.react-flow__edge {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.react-flow__edge-path {
+  stroke: #a855f7 !important;
+  stroke-width: 4 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 .react-flow__controls {
   background: rgba(26, 26, 26, 0.9) !important;
   border: 1px solid rgba(168, 85, 247, 0.3) !important;
@@ -366,10 +379,11 @@
 
 /* Custom Edge Styles */
 .react-flow__edge-path {
-  stroke: #a855f7;
-  stroke-width: 3;
-  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
+  stroke: #a855f7 !important;
+  stroke-width: 4 !important;
+  filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) !important;
   transition: all 0.3s ease;
+  opacity: 1 !important;
 }
 
 .react-flow__edge:hover .react-flow__edge-path {
@@ -397,6 +411,26 @@
 }
 
 .react-flow__edge:hover .react-flow__arrowhead {
+  fill: #f59e0b;
+  stroke: #f59e0b;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.8));
+}
+
+/* Custom Marker Definitions */
+.react-flow__marker {
+  fill: #d946ef;
+  stroke: #d946ef;
+  filter: drop-shadow(0 0 4px rgba(217, 70, 239, 0.8));
+}
+
+.react-flow__marker-arrowclosed {
+  fill: #d946ef;
+  stroke: #d946ef;
+  filter: drop-shadow(0 0 4px rgba(217, 70, 239, 0.8));
+}
+
+.react-flow__edge:hover .react-flow__marker,
+.react-flow__edge:hover .react-flow__marker-arrowclosed {
   fill: #f59e0b;
   stroke: #f59e0b;
   filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.8));
