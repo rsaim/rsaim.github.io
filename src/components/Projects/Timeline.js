@@ -376,7 +376,10 @@ function Timeline() {
           />
           <Panel position="bottom-center">
             <div className="timeline-interaction-hint">
-              <p>Click on nodes to expand details • Use controls to navigate</p>
+              <p>
+                Zoom or click on nodes to expand details • Use controls to
+                navigate
+              </p>
             </div>
           </Panel>
         </ReactFlow>
