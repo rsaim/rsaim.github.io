@@ -24,55 +24,55 @@ function Toolstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
       <Col xs={4} md={2} className="tech-icons">
-        <SiLinux />
+        <SiLinux style={{ color: "#FCC624" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiVisualstudiocode />
+        <SiVisualstudiocode style={{ color: "#007ACC" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiDocker />
+        <SiDocker style={{ color: "#2496ED" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiKubernetes />
+        <SiKubernetes style={{ color: "#326CE5" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiTerraform />
+        <SiTerraform style={{ color: "#7B42BC" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiAnsible />
+        <SiAnsible style={{ color: "#EE0000" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiGrafana />
+        <SiGrafana style={{ color: "#F46800" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiPrometheus />
+        <SiPrometheus style={{ color: "#E6522C" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiDatadog />
+        <SiDatadog style={{ color: "#632CA6" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiElasticsearch />
+        <SiElasticsearch style={{ color: "#005571" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiJenkins />
+        <SiJenkins style={{ color: "#D24939" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiGit />
+        <SiGit style={{ color: "#F05032" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiPostman />
+        <SiPostman style={{ color: "#FF6C37" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiJupyter />
+        <SiJupyter style={{ color: "#F37626" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiApachekafka />
+        <SiApachekafka style={{ color: "#231F20" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiVercel />
+        <SiVercel style={{ color: "#000000" }} />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiHeroku />
+        <SiHeroku style={{ color: "#430098" }} />
       </Col>
     </Row>
   );

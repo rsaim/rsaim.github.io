@@ -7,9 +7,8 @@ import Particle from "../Particle";
 import TypewriterIntro from "./Type";
 import Projects from "../Projects/Projects";
 import Github from "../About/Github";
-import Techstack from "../About/Techstack";
-import Toolstack from "../About/Toolstack";
 import Timeline from "../Projects/Timeline";
+import TechStack from "../About/Techstack";
 
 function Home() {
   return (
@@ -108,33 +107,10 @@ function Home() {
         </Container>
       </Container>
 
-      {/* Professional Timeline */}
       <Timeline />
-
-      {/* Projects Section */}
       <Projects />
-
-      {/* Combined Technical Skills Section */}
-      <Container fluid className="about-section" id="skills">
-        <Container>
-          <h1 className="project-heading">
-            Professional <strong className="purple">Skillset & Tools</strong>
-          </h1>
-          <p
-            style={{
-              color: "white",
-              textAlign: "center",
-              paddingBottom: "20px",
-            }}
-          >
-            Technologies, frameworks, and tools I work with professionally
-          </p>
-
-          <Techstack />
-          <Toolstack />
-          <Github />
-        </Container>
-      </Container>
+      <Github />
+      <TechStack />
     </section>
   );
 }
