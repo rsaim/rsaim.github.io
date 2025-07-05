@@ -1,13 +1,9 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import homeLogo from "../../Assets/home-main.svg";
+import { Col, Container, Row } from "react-bootstrap";
+import { AiFillGithub, AiFillInstagram } from "react-icons/ai";
+import { FaLinkedinIn, FaStackOverflow } from "react-icons/fa";
 import Tilt from "react-parallax-tilt";
-import {
-  AiFillGithub,
-  AiOutlineTwitter,
-  AiFillInstagram,
-} from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import homeLogo from "../../Assets/home-main.svg";
 
 function Home2() {
   return (
@@ -19,30 +15,112 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-              Currently, I'm interning at <b className="purple">
-                <a href="https://www.skillet.ai/" rel="noreferrer" target="_blank"> skillet.ai </a>
+              Currently, I'm working as a Senior Software Engineer at{" "}
+              <b className="purple">
+                <a
+                  href="https://liveramp.com/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  LiveRamp Holdings, Inc
+                </a>
+              </b>{" "}
+              on the Identity Engineering team, where I architect and build{" "}
+              <b className="purple">
+                GenAI middleware platforms, RAG pipelines, and agentic AI
+                systems
+              </b>{" "}
+              for real-time identity resolution. My work includes developing{" "}
+              <b className="purple">
+                agentic AI for OnCall triage, Kubernetes agents, and optimizing
+                SQL queries in SingleStore and PostgreSQL
+              </b>{" "}
+              for high-throughput distributed systems.
+              <br />
+              <br />I graduated with MS in Computer Science from{" "}
+              <b className="purple">
+                <a
+                  href="https://en.wikipedia.org/wiki/Courant_Institute_of_Mathematical_Sciences"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  New York University (Courant)
+                </a>
+              </b>{" "}
+              in August 2023.
+              <br />
+              <br />
+              Previously, I spent over 5 years as a Tech Lead at{" "}
+              <b className="purple">
+                <a
+                  href="https://www.deshaw.com/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  D. E. Shaw & Co.
+                </a>
+              </b>{" "}
+              building algorithmic trading infrastructure. I have also worked at{" "}
+              <b className="purple">
+                <a
+                  href="https://www.bloomberg.com/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Bloomberg LP
+                </a>
+                ,{" "}
+                <a
+                  href="https://www.nasa.gov/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  NASA
+                </a>
+                ,{" "}
+                <a
+                  href="https://www.citi.com/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Citi
+                </a>
+                ,{" "}
+                <a
+                  href="https://www.skillet.ai/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  skillet.ai
+                </a>
+              </b>{" "}
+              and{" "}
+              <b>
+                <a
+                  href="https://www.drdo.gov.in/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  DRDO
+                </a>
               </b>
-              and pursuing Master in Computer Science @ <b className="purple">
-                <a href="https://en.wikipedia.org/wiki/Courant_Institute_of_Mathematical_Sciences" rel="noreferrer" target="_blank"> New York University (Courant)  </a>
+              .
+              <br />
+              <br />I am highly proficient in{" "}
+              <b className="purple">
+                Core Python (Expert), JAVA, JavaScript, TypeScript, C++
+              </b>{" "}
+              and have extensive experience with{" "}
+              <b className="purple">
+                GenAI & ML, Cloud Technologies, and DevOps
               </b>
               <br />
-              <br />
-              Previously, I spent over half-a-decade crunching code for Wall Street @ <b className="purple">
-                <a href="https://www.deshaw.com/" rel="noreferrer" target="_blank">D. E. Shaw & Co. </a>
-              </b>I have also worked at <b className="purple">
-                <a href="https://www.nasa.gov/" rel="noreferrer" target="_blank"> NASA </a>,
-                <a href="https://liveramp.com/" rel="noreferrer" target="_blank"> LiveRamp, </a>
-                </b>
-                 and
-                <b>
-                <a href="https://www.drdo.gov.in/" rel="noreferrer" target="_blank"> DRDO. </a>
-              </b>
-              <br />
-              <br />
-              I am highly profiencient in core Python and classics like <b className="purple"> Javascript, C++, and JAVA </b>
-              <br />
-              <br />
-              I'm interested in building new &nbsp; <b className="purple">Software Technologies and Products </b> to be used at large-scale
+              <br />I specialize in building{" "}
+              <b className="purple">
+                high-performance distributed systems, GenAI platforms, and
+                scalable backend architectures
+              </b>{" "}
+              that power real-world applications at scale
             </p>
           </Col>
           <Col md={4} className="myAvtar">
@@ -76,6 +154,16 @@ function Home2() {
                   className="icon-colour  home-social-icons"
                 >
                   <FaLinkedinIn />
+                </a>
+              </li>
+              <li className="social-icons">
+                <a
+                  href="https://stackoverflow.com/users/rsaim"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="icon-colour  home-social-icons"
+                >
+                  <FaStackOverflow />
                 </a>
               </li>
               <li className="social-icons">

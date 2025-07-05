@@ -1,0 +1,64 @@
+/* Projects section adjustments for sidebar */
+.project-section {
+  position: relative;
+  padding-left: 0;
+  transition: padding-left 0.3s ease;
+}
+
+/* Smooth scrolling for section navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section spacing adjustments */
+.project-section h2 {
+  scroll-margin-top: 100px;
+}
+
+/* Ensure proper spacing for sections */
+.project-section [id] {
+  scroll-margin-top: 100px;
+}
+
+/* Enhance project cards animation when sidebar is present */
+@media (min-width: 993px) {
+  .project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.15);
+  }
+}
+
+/* Add subtle animations to sections */
+.project-section [id] {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered animation for sections */
+.project-section [id]:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.project-section [id]:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.project-section [id]:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.project-section [id]:nth-child(4) {
+  animation-delay: 0.4s;
+}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import logo from "../Assets/saim_raza_logo2.png";
+
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
@@ -12,9 +12,12 @@ import {
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
+  AiFillGithub,
+  AiFillInstagram,
 } from "react-icons/ai";
 
 import { CgFileDocument } from "react-icons/cg";
+import { FaLinkedinIn, FaStackOverflow } from "react-icons/fa";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -28,6 +31,14 @@ function NavBar() {
     }
   }
 
+  const scrollToAbout = () => {
+    const aboutSection = document.querySelector(".about-section");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+    }
+    updateExpanded(false);
+  };
+
   window.addEventListener("scroll", scrollHandler);
 
   return (
@@ -38,9 +49,6 @@ function NavBar() {
       className={navColour ? "sticky" : "navbar"}
     >
       <Container>
-        <Navbar.Brand href="/" className="d-flex">
-          <img src={logo} className="img-fluid" alt="brand" />
-        </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           onClick={() => {
@@ -52,7 +60,7 @@ function NavBar() {
           <span></span>
         </Navbar.Toggle>
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto" defaultActiveKey="#home">
+          <Nav className="mx-auto" defaultActiveKey="#home">
             <Nav.Item>
               <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
                 <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
@@ -60,16 +68,12 @@ function NavBar() {
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/about"
-                onClick={() => updateExpanded(false)}
-              >
+              <Nav.Link onClick={scrollToAbout} style={{ cursor: "pointer" }}>
                 <AiOutlineUser style={{ marginBottom: "2px" }} /> About
               </Nav.Link>
             </Nav.Item>
 
-            {/* <Nav.Item>
+            <Nav.Item>
               <Nav.Link
                 as={Link}
                 to="/project"
@@ -80,7 +84,7 @@ function NavBar() {
                 />{" "}
                 Projects
               </Nav.Link>
-            </Nav.Item> */}
+            </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
@@ -89,6 +93,60 @@ function NavBar() {
                 onClick={() => updateExpanded(false)}
               >
                 <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
+              </Nav.Link>
+            </Nav.Item>
+
+            {/* Divider */}
+            <Nav.Item className="nav-divider">
+              <span className="divider-line"></span>
+            </Nav.Item>
+
+            {/* Social Links */}
+            <Nav.Item className="social-links">
+              <Nav.Link
+                href="https://github.com/rsaim"
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+                title="GitHub"
+              >
+                <AiFillGithub />
+              </Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item className="social-links">
+              <Nav.Link
+                href="https://www.linkedin.com/in/raza-saim/"
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+                title="LinkedIn"
+              >
+                <FaLinkedinIn />
+              </Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item className="social-links">
+              <Nav.Link
+                href="https://stackoverflow.com/users/rsaim"
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+                title="Stack Overflow"
+              >
+                <FaStackOverflow />
+              </Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item className="social-links">
+              <Nav.Link
+                href="https://www.instagram.com/rsa.im/"
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+                title="Instagram"
+              >
+                <AiFillInstagram />
               </Nav.Link>
             </Nav.Item>
 

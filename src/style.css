@@ -85,8 +85,25 @@ button:focus {
 .navbar {
   position: fixed !important;
   transition: all 0.3s ease-out 0s !important;
-  padding: 0.3rem 2rem !important;
+  padding: 0.8rem 2rem !important;
   font-size: 1.2rem !important;
+  min-height: 70px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.navbar .container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.navbar-collapse {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-grow: 1 !important;
 }
 
 .navbar-toggler {
@@ -175,9 +192,17 @@ button:focus {
   }
 }
 
+.navbar-nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+}
+
 .navbar-nav .nav-item {
   position: relative;
-  margin-left: 20px;
+  margin: 0 !important;
 }
 
 .navbar-nav .nav-item a {
@@ -185,6 +210,7 @@ button:focus {
   transition: all 0.3s ease-out 0s;
   position: relative;
   z-index: 1;
+  white-space: nowrap;
 }
 
 .navbar-nav .nav-item a::after {
@@ -203,6 +229,137 @@ button:focus {
 
 .navbar-nav .nav-item a:hover::after {
   width: 100%;
+}
+
+/* Social Links in Navbar */
+.social-links {
+  display: flex !important;
+  align-items: center !important;
+  margin-left: 0.5rem !important;
+}
+
+.social-links .social-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.2rem !important;
+  color: #c770f0 !important;
+  padding: 0 !important;
+  margin: 0 0.3rem !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease-out 0s !important;
+  background: rgba(199, 112, 240, 0.1) !important;
+  border: 1px solid rgba(199, 112, 240, 0.3) !important;
+  width: 38px !important;
+  height: 38px !important;
+}
+
+.social-links .social-link:hover {
+  color: #fff !important;
+  background: linear-gradient(135deg, #c770f0, #be50f4) !important;
+  border-color: #c770f0 !important;
+  transform: scale(1.1) translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(199, 112, 240, 0.4) !important;
+}
+
+.social-links .social-link:focus {
+  color: #fff !important;
+  background: linear-gradient(135deg, #c770f0, #be50f4) !important;
+  outline: none !important;
+}
+
+/* Fork Button Styling */
+.fork-btn {
+  margin-left: 1rem !important;
+}
+
+.fork-btn-inner {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 25px !important;
+  background: linear-gradient(135deg, #c770f0, #be50f4) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease-out 0s !important;
+}
+
+.fork-btn-inner:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(199, 112, 240, 0.4) !important;
+  background: linear-gradient(135deg, #be50f4, #c770f0) !important;
+}
+
+@media (max-width: 767px) {
+  .navbar-nav {
+    gap: 0.5rem !important;
+  }
+
+  .social-links .social-link {
+    font-size: 1rem !important;
+    width: 32px !important;
+    height: 32px !important;
+    margin: 0 0.2rem !important;
+  }
+
+  .fork-btn {
+    margin-left: 0.5rem !important;
+  }
+
+  .fork-btn-inner {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .nav-divider {
+    display: none !important;
+  }
+}
+
+/* Navigation Divider */
+.nav-divider {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 0.5rem !important;
+}
+
+.divider-line {
+  width: 1px !important;
+  height: 25px !important;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    #c770f0,
+    transparent
+  ) !important;
+  opacity: 0.6 !important;
+}
+
+/* Enhanced Navigation Styling */
+.navbar-nav .nav-item:not(.social-links):not(.fork-btn):not(.nav-divider) {
+  position: relative;
+}
+
+.navbar-nav
+  .nav-item:not(.social-links):not(.fork-btn):not(.nav-divider)
+  .nav-link {
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  font-size: 0.9rem !important;
+  padding: 0.8rem 1.2rem !important;
+  border-radius: 25px !important;
+  transition: all 0.3s ease-out 0s !important;
+}
+
+.navbar-nav
+  .nav-item:not(.social-links):not(.fork-btn):not(.nav-divider)
+  .nav-link:hover {
+  background: rgba(199, 112, 240, 0.1) !important;
+  color: #c770f0 !important;
+  transform: translateY(-1px) !important;
 }
 
 /* --------- */
@@ -260,12 +417,13 @@ button:focus {
   background-image: var(--image-gradient), url(./Assets/home-bg.jpg);
   background-position: top center;
   background-repeat: no-repeat;
-  /* padding-bottom: 30px !important; */
+  padding-bottom: 30px !important;
   padding-top: 30px !important;
+  margin-top: 100px !important;
 }
 
 .home-content {
-  padding: 9rem 0 2rem !important;
+  padding: 4rem 0 2rem !important;
   color: whitesmoke;
   text-align: left;
 }
@@ -457,10 +615,10 @@ button:focus {
 }
 
 .project-card {
-  padding-top: 50px !important;
-  padding-bottom: 50px !important;
-  padding-left: 25px !important;
-  padding-right: 25px !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
   height: auto !important;
 }
 
@@ -510,7 +668,7 @@ button:focus {
 }
 
 .card-img-top {
-  padding: 20px !important;
+  padding: 15px !important;
   opacity: 0.8 !important;
   border-radius: 10px !important;
 }

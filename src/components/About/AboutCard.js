@@ -8,17 +8,39 @@ function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            Hi Everyone,
+            Hi,
+            <br />
+            <br />I am <span className="purple">Saim Raza </span> from{" "}
+            <span className="purple"> New York City</span>
+            <br />
+            <br />I graduated with B. Tech. in Mathematics and Computing from{" "}
+            <span className="purple">
+              Delhi Technological University (DTU)
+            </span>{" "}
+            in 2016
+            <br />
+            <br />I completed my MS in Computer Science at{" "}
+            <span className="purple">New York University (NYU) Courant</span> in
+            August 2023
             <br />
             <br />
-            I am <span className="purple">Saim Raza </span> from <span className="purple"> New York City</span>
+            Currently, I'm working as a Senior Software Engineer at{" "}
+            <span className="purple">LiveRamp Holdings, Inc</span> on the
+            Identity Engineering team. My work focuses on architecting{" "}
+            <span className="purple">
+              GenAI middleware platforms, developing RAG pipelines, and building
+              agentic AI systems
+            </span>{" "}
+            for real-time identity resolution. I also work on{" "}
+            <span className="purple">
+              agentic AI for OnCall triage, Kubernetes agents, and SQL
+              optimization in SingleStore and PostgreSQL
+            </span>{" "}
+            for high-performance distributed systems.
             <br />
-            <br />I graduared with B. Tech. in Mathematics and Computing from <span className="purple">Delhi Technological University (DTU)</span> in 2016
             <br />
-            <br />Currently, I'm studying MS in Computer Science at <span className="purple">New York University (NYU) Courant</span>. My expected graduation is May 2023
-            <br />
-            <br />
-            Apart from coding, some following are some of activities that I love to do!
+            Apart from coding, some following are some of activities that I love
+            to do!
           </p>
           <ul>
             <li className="about-activity">
