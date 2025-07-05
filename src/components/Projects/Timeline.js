@@ -91,7 +91,7 @@ function Timeline() {
       location: "New York, NY",
       description: "Trading Infrastructure",
       skills: ["Python", "Trading Systems", "Leadership", "Serialization"],
-      icon: "https://upload.wikimedia.org/wikipedia/commons/6/60/D._E._Shaw_%26_Co._logo.png",
+      icon: "https://media.licdn.com/dms/image/v2/D5622AQEmnR_mX_RsZQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1720354826664?e=2147483647&v=beta&t=K6q76GPfKW-jhw5k9S_yRQeKIipWtQNxmtbLwF73V7o",
       color: "#a855f7",
     },
     {
@@ -103,7 +103,7 @@ function Timeline() {
       location: "Virtual",
       description: "National Talk on HPC in Python/C++",
       skills: ["Public Speaking", "Python", "Parallel Computing", "Community"],
-      icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBgY4Wfy9hXIn-GOD3xvwiisF8GM97MiktoA&s",
+      icon: "https://www.citypng.com/public/uploads/preview/hd-python-logo-symbol-transparent-png-735811696257415dbkifcuokn.png",
       color: "#d946ef",
     },
     {
