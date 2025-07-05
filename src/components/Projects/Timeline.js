@@ -25,7 +25,7 @@ function Timeline() {
         "Python",
         "Golang",
       ],
-      icon: "🚀",
+      icon: "https://cdn.brandfetch.io/arbor.io/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed",
       color: "#a855f7",
     },
     {
@@ -37,7 +37,7 @@ function Timeline() {
       location: "New York, NY",
       description: "Trading Infra and Market Data",
       skills: ["Kubernetes", "Python", "C/C++", "React"],
-      icon: "🚀",
+      icon: "https://data.bloomberglp.com/company/sites/51/2019/08/og-image-generic-lp.png",
       color: "#a855f7",
     },
     {
@@ -49,7 +49,7 @@ function Timeline() {
       location: "New York, NY",
       description: "ML/AI",
       skills: ["Algorithms", "Distributed Systems", "ML", "AI", "DL"],
-      icon: "🎓",
+      icon: "https://yt3.ggpht.com/-RZYi5isxH_M/AAAAAAAAAAI/AAAAAAAAAAA/rmWpoe2qZzI/s900-c-k-no/photo.jpg",
       color: "#d946ef",
     },
     {
@@ -61,7 +61,7 @@ function Timeline() {
       location: "San Francisco, CA",
       description: "DeFi and NFT Marketplace",
       skills: ["Ethereum", "Smart Contracts", "Decentralized Finance"],
-      icon: "🧠",
+      icon: "https://uploads-ssl.webflow.com/63823d9415bbb64cd877f3ce/63d18fbc316c63162855c2d0_Frame%201.png",
       color: "#d946ef",
     },
     {
@@ -79,7 +79,7 @@ function Timeline() {
         "Data Engineering",
         "AWS",
       ],
-      icon: "🛰️",
+      icon: "https://e7.pngegg.com/pngimages/28/842/png-clipart-logo-nasa-insignia-design-brand-nasa-miscellaneous-blue.png",
       color: "#d946ef",
     },
     {
@@ -91,7 +91,7 @@ function Timeline() {
       location: "New York, NY",
       description: "Trading Infrastructure",
       skills: ["Python", "Trading Systems", "Leadership", "Serialization"],
-      icon: "📈",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/6/60/D._E._Shaw_%26_Co._logo.png",
       color: "#a855f7",
     },
     {
@@ -103,31 +103,31 @@ function Timeline() {
       location: "Virtual",
       description: "National Talk on HPC in Python/C++",
       skills: ["Public Speaking", "Python", "Parallel Computing", "Community"],
-      icon: "🎤",
+      icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBgY4Wfy9hXIn-GOD3xvwiisF8GM97MiktoA&s",
       color: "#d946ef",
     },
     {
       id: 8,
-      year: "2016 - 2017",
+      year: "2015 - 2016",
       type: "work",
       title: "Research Associate",
       company: "DRDO (Defence Research and Development Organisation)",
       location: "New Delhi, India",
       description: "Object Tracking and Computer Vision Research",
       skills: ["ML", "AI", "CV", "Research", "Publications"],
-      icon: "🔬",
+      icon: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Defence_Research_and_Development_Organisation.svg/1200px-Defence_Research_and_Development_Organisation.svg.png",
       color: "#a855f7",
     },
     {
       id: 9,
-      year: "2016",
+      year: "2012 - 2016",
       type: "education",
       title: "Bachelor of Technology",
       company: "Delhi Technological University (DTU)",
       location: "New Delhi, India",
       description: "CS and Applied Mathematics",
       skills: ["CS", "Applied Mathematics", "Algorithms"],
-      icon: "🎓",
+      icon: "https://upload.wikimedia.org/wikipedia/en/b/b5/DTU%2C_Delhi_official_logo.png",
       color: "#d946ef",
     },
   ];
@@ -246,7 +246,20 @@ function Timeline() {
                     style={{ backgroundColor: getTypeColor(item.type) }}
                     aria-hidden="true"
                   >
-                    {item.icon}
+                    {item.icon.startsWith("http") ? (
+                      <img
+                        src={item.icon}
+                        alt="Timeline icon"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    ) : (
+                      item.icon
+                    )}
                   </div>
 
                   <div className="timeline-card">
