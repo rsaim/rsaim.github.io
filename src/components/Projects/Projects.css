@@ -3,11 +3,95 @@
   position: relative;
   padding-left: 0;
   transition: padding-left 0.3s ease;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
+
+.project-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(168, 85, 247, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(217, 70, 239, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
 }
 
 /* Smooth scrolling for section navigation */
 html {
   scroll-behavior: smooth;
+}
+
+/* Enhanced project headings */
+.project-section .project-heading {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin-bottom: 30px !important;
+  text-align: center !important;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.3) !important;
+  letter-spacing: -0.5px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.project-section .project-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(135deg, #a855f7, #d946ef);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+/* Company section styling */
+.project-section > div[id] {
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.project-section > div[id] h2 {
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin-bottom: 40px !important;
+  text-align: center !important;
+  text-shadow: 0 0 15px rgba(168, 85, 247, 0.2) !important;
+  letter-spacing: -0.3px !important;
+  position: relative !important;
+  padding-bottom: 15px !important;
+}
+
+.project-section > div[id] h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.8),
+    rgba(217, 70, 239, 0.8)
+  );
+  border-radius: 1px;
 }
 
 /* Section spacing adjustments */
@@ -20,22 +104,24 @@ html {
   scroll-margin-top: 100px;
 }
 
-/* Enhance project cards animation when sidebar is present */
+/* Enhanced project list layout */
 @media (min-width: 993px) {
-  .project-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .project-list-container {
+    margin-top: 30px;
   }
+}
 
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.15);
+/* Enhanced project list for mobile */
+@media (max-width: 992px) {
+  .project-list-container {
+    margin-top: 25px;
   }
 }
 
 /* Add subtle animations to sections */
 .project-section [id] {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(30px);
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
@@ -61,4 +147,140 @@ html {
 
 .project-section [id]:nth-child(4) {
   animation-delay: 0.4s;
+}
+
+/* Project section description styling */
+.project-section > .container > p {
+  font-size: 1.1rem !important;
+  color: #c9d1d9 !important;
+  text-align: center !important;
+  margin-bottom: 50px !important;
+  opacity: 0.9 !important;
+  line-height: 1.6 !important;
+  max-width: 600px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Enhanced list spacing */
+.project-section .project-list-container {
+  margin-bottom: 30px;
+}
+
+/* Company section containers */
+.project-section > div[id] {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 20px;
+  padding: 40px 20px;
+  margin-bottom: 50px;
+  border: 1px solid rgba(168, 85, 247, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-section > div[id]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.05) 0%,
+    transparent 50%,
+    rgba(217, 70, 239, 0.05) 100%
+  );
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .project-section {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+
+  .project-section .project-heading {
+    font-size: 2rem !important;
+    margin-bottom: 25px !important;
+  }
+
+  .project-section > div[id] h2 {
+    font-size: 1.8rem !important;
+    margin-bottom: 30px !important;
+  }
+
+  .project-section > div[id] {
+    padding: 30px 15px;
+    margin-bottom: 40px;
+  }
+
+  .project-section > .container > p {
+    font-size: 1rem !important;
+    margin-bottom: 40px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-section .project-heading {
+    font-size: 1.8rem !important;
+  }
+
+  .project-section > div[id] h2 {
+    font-size: 1.6rem !important;
+  }
+
+  .project-section > div[id] {
+    padding: 25px 10px;
+  }
+}
+
+/* Loading animation for the entire section */
+.project-section {
+  animation: sectionFadeIn 1s ease-out forwards;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced visual hierarchy for company names */
+.project-section > div[id] h2 .purple {
+  background: linear-gradient(135deg, #a855f7, #d946ef);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none !important;
+}
+
+/* Scroll indicator for sections */
+.project-section > div[id] {
+  scroll-margin-top: 120px;
+}
+
+/* Improved spacing between project lists */
+.project-section .project-list-container {
+  gap: 24px;
+}
+
+/* Enhanced container styling */
+.project-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Subtle glow effect for section containers */
+.project-section > div[id]:hover {
+  border-color: rgba(168, 85, 247, 0.2);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.1);
+  transition: all 0.3s ease;
 }

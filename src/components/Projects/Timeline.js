@@ -194,7 +194,7 @@ function Timeline() {
       type: "work",
       title: "Founding Engineer",
       company: "skillet.ai",
-      location: "San Francisco, CA",
+      location: "New York, NY",
       description: "DeFi and NFT Marketplace",
       skills: ["Ethereum", "Smart Contracts", "Decentralized Finance"],
       icon: "https://uploads-ssl.webflow.com/63823d9415bbb64cd877f3ce/63d18fbc316c63162855c2d0_Frame%201.png",
@@ -206,7 +206,7 @@ function Timeline() {
       type: "work",
       title: "Research Intern",
       company: "NASA",
-      location: "California, USA",
+      location: "NYU & Columbia, New York",
       description: "Peta-Byte scale Data Engineering using Zarr and Dask",
       skills: [
         "Research",
