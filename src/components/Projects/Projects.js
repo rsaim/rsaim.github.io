@@ -18,7 +18,8 @@ const projectData = {
     title: "LiveRamp Holdings - GenAI & Infrastructure",
     projects: [
       {
-        imgPath: chatify,
+        imgPath:
+          "https://liveramp.com/wp-content/uploads/2022/02/Blog-post-header_LiveRamps-Brand-Identity_488x436.jpg",
         isBlog: false,
         title: "GenAI & Infrastructure Projects",
         description: "Details not disclosed",
@@ -37,7 +38,8 @@ const projectData = {
         link: "#",
       },
       {
-        imgPath: algo,
+        imgPath:
+          "https://docs.liveramp.com/connect/en/image/uuid-652d9f1b-51a5-b014-0db2-33f4c429995f.png",
         isBlog: false,
         title: "Real-time Identity Resolution & CTV Platform",
         description: "Details not disclosed",
@@ -55,7 +57,7 @@ const projectData = {
           "High-Scale Systems",
           "Real-time Processing",
         ],
-        link: "#",
+        link: "https://docs.liveramp.com/safe-haven/en/platform-guide-to-connected-tv-targeting-and-measurement.html",
       },
     ],
   },
@@ -63,16 +65,18 @@ const projectData = {
     title: "D. E. Shaw & Co. - Trading & Infrastructure",
     projects: [
       {
-        imgPath: algo,
+        imgPath:
+          "https://files.realpython.com/media/Object-Serialization-With-the-Python-Pickle-Module_Watermarked.8e4667c2f71f.jpg",
         isBlog: false,
         title: "High-Performance Serialization Library",
         description:
           "Engineered a cutting-edge Python serialization library for 'exotic' objects like lambdas and user-defined classes at DE Shaw. Achieved 100x performance advantage over open-source counterparts like dill and cloudpickle.",
         technologies: ["Python", "C++", "Serialization", "Performance", "HPC"],
-        link: "#",
+        link: "https://www.youtube.com/watch?v=u3QyAGVE2n4&ab_channel=PythonIndia",
       },
       {
-        imgPath: plant,
+        imgPath:
+          "https://files.realpython.com/media/How-to-Profile-the-Performance-of-Your-Python-Code_Watermarked.d85e91e64471.jpg",
         isBlog: false,
         title: "Performance Monitoring Framework",
         description:
@@ -81,7 +85,8 @@ const projectData = {
         link: "#",
       },
       {
-        imgPath: editor,
+        imgPath:
+          "https://www.softwebsolutions.com/wp-content/uploads/2022/10/Python-blog.jpg",
         isBlog: false,
         title: "Python 2 to 3 Migration",
         description:
@@ -90,13 +95,14 @@ const projectData = {
         link: "#",
       },
       {
-        imgPath: bitsOfCode,
+        imgPath:
+          "https://opengraph.githubassets.com/9b005a19198ae1733234f7a734bb6cd840b1645b43d82d2af0f7a02f052755a9/deshaw/pyflyby",
         isBlog: false,
         title: "Pyflyby - Open Source Contribution",
         description:
           "A set of productivity tools for Python. Actively contributed to development, maintenance, improvements, and production releases to PyPI. Forked from DE Shaw's open source project to enhance Python developer productivity.",
         technologies: ["Python", "Open Source", "DevTools", "PyPI"],
-        link: "https://github.com/rsaim/pyflyby",
+        link: "https://github.com/deshaw/pyflyby",
       },
     ],
   },
@@ -104,7 +110,8 @@ const projectData = {
     title: "Other Professional Work",
     projects: [
       {
-        imgPath: algo,
+        imgPath:
+          "https://media.licdn.com/dms/image/v2/D5610AQHIjSgb2DgLhg/image-shrink_800/image-shrink_800/0/1733421089914?e=2147483647&v=beta&t=XSr9OdpRL_PphU_NZggXyjWW2NolQFodK4rbUgYwqAM",
         isBlog: false,
         title: "Robothon Trading Platform - Citi",
         description:
@@ -120,7 +127,8 @@ const projectData = {
         link: "#",
       },
       {
-        imgPath: emotion,
+        imgPath:
+          "https://ars.els-cdn.com/content/image/1-s2.0-S0957417417X00067-cov200h.gif",
         isBlog: false,
         title: "Advanced Object Tracking Algorithm - DRDO",
         description:
@@ -134,8 +142,29 @@ const projectData = {
         ],
         link: "https://www.sciencedirect.com/science/article/abs/pii/S0957417417301628",
       },
+    ],
+  },
+  blogs: {
+    title: "Technical Blogs & Talks",
+    projects: [
       {
-        imgPath: algo,
+        imgPath:
+          "https://kinsta.com/wp-content/uploads/2023/02/what-is-a-proxy.jpg",
+        isBlog: true,
+        title: "Create Your Own HTTP Proxy Using Google Cloud Compute Engine",
+        description:
+          "A comprehensive guide on setting up a personal HTTP proxy server using Google Cloud Platform's Compute Engine, perfect for bypassing geo-restrictions and enhancing online privacy.",
+        technologies: [
+          "GCP",
+          "Networking",
+          "Cloud Computing",
+          "Security",
+          "Technical Writing",
+        ],
+        link: "https://medium.com/@rsaim/create-your-own-http-proxy-using-google-cloud-compute-engine-791f82db547a",
+      },
+      {
+        imgPath: "https://i.ytimg.com/vi/u3QyAGVE2n4/sddefault.jpg",
         isBlog: true,
         title: "PyCon India 2020 Talk",
         description:
@@ -149,16 +178,25 @@ const projectData = {
     title: "Personal & Open Source Projects",
     projects: [
       {
-        imgPath: chatify,
+        imgPath:
+          "https://github.com/rsaim/instasanity/raw/main/image/README/1751515431775.png",
         isBlog: false,
         title: "Instasanity - AI Instagram Cleanup",
         description:
           "AI-Powered Instagram Cleanup tool built with Python. Automates the process of cleaning up Instagram content using machine learning algorithms to identify and categorize posts for better content management.",
-        technologies: ["Python", "AI/ML", "Instagram API", "Data Science"],
+        technologies: [
+          "GenAI",
+          "Ollama",
+          "Python",
+          "AI/ML",
+          "Instagram API",
+          "Data Science",
+        ],
         link: "https://github.com/rsaim/instasanity",
       },
       {
-        imgPath: editor,
+        imgPath:
+          "https://miro.medium.com/v2/resize:fit:1200/1*J7CqaSkb9X1l-TmGH5fdBQ.png",
         isBlog: false,
         title: "Chrome Extension - Educative",
         description:
@@ -167,7 +205,7 @@ const projectData = {
         link: "https://github.com/rsaim/chrome-extension-educative",
       },
       {
-        imgPath: leaf,
+        imgPath: "https://i.ytimg.com/vi/okUIQB4HeIU/maxresdefault.jpg",
         isBlog: false,
         title: "DNS Server Application",
         description:
@@ -176,45 +214,13 @@ const projectData = {
         link: "https://github.com/rsaim/dns_app",
       },
       {
-        imgPath: bitsOfCode,
-        isBlog: false,
-        title: "Flask Microservice on IBM Cloud",
-        description:
-          "A simple Flask application deployed on IBM Kubernetes instance via Docker containerization. Demonstrates cloud-native deployment practices with proper containerization and orchestration using Docker and Kubernetes.",
-        technologies: ["Python", "Flask", "Docker", "Kubernetes", "IBM Cloud"],
-        link: "https://github.com/rsaim/time_app",
-      },
-      {
-        imgPath: algo,
-        isBlog: false,
-        title: "DTU Student Results Portal",
-        description:
-          "Portal to analyze and visualize results of Delhi Technological University students. Built with Python, provides comprehensive analytics and visualization tools for academic performance tracking and insights.",
-        technologies: [
-          "Python",
-          "Data Analytics",
-          "Visualization",
-          "Web Scraping",
-        ],
-        link: "https://github.com/rsaim/supplementary",
-      },
-      {
-        imgPath: suicide,
+        imgPath: "https://i.ytimg.com/vi/GJi8yVRMLys/mqdefault.jpg",
         isBlog: false,
         title: "Jeevanstambh Foundation Website",
         description:
           "Developed and maintained the website for Jeevanstambh Foundation, an NGO working in various areas of relief management. Built with HTML/CSS/JavaScript to support their social impact initiatives and community outreach programs.",
         technologies: ["HTML", "CSS", "JavaScript", "Web Development"],
-        link: "https://github.com/rsaim/jsf",
-      },
-      {
-        imgPath: editor,
-        isBlog: false,
-        title: "Bash Customization Setup",
-        description:
-          "Shell setup scripts to customize Bash environment with productivity enhancements. Includes custom prompts, aliases, functions, and configuration files to improve developer workflow and terminal experience.",
-        technologies: ["Bash", "Shell Scripting", "DevTools", "Automation"],
-        link: "https://github.com/rsaim/bash_setup",
+        link: "https://jeevanstambh.in/",
       },
     ],
   },
