@@ -122,6 +122,22 @@ const TimelineWrapper = () => (
 - **User Behavior**: Hotjar heatmaps
 - **API Monitoring**: Custom dashboard
 
+## 🔒 Domain & GitHub Pages Verification
+
+After making any changes to the repository, verify the following:
+
+### CNAME File Check
+- [ ] Verify CNAME file exists in the root directory
+- [ ] Confirm CNAME contains exactly: `www.rsaim.info` (no http/https prefix)
+- [ ] Check if recent changes accidentally modified/deleted the CNAME file
+
+### GitHub Pages Settings
+- [ ] Go to repository → Settings → Pages
+- [ ] Verify custom domain is configured as `www.rsaim.info`
+- [ ] Confirm "Enforce HTTPS" is enabled
+- [ ] Wait for GitHub Pages to finish deployment
+- [ ] Test the live site at https://www.rsaim.info
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) first.
