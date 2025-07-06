@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -18,17 +18,48 @@ import { MdEmail } from "react-icons/md";
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
 
-  function scrollHandler() {
-    if (window.scrollY >= 20) {
-      updateNavbar(true);
-    } else {
-      updateNavbar(false);
-    }
-  }
+  useEffect(() => {
+    const scrollHandler = () => {
+      if (window.scrollY >= 20) {
+        updateNavbar(true);
+      } else {
+        updateNavbar(false);
+      }
+    };
+
+    const handleScroll = () => {
+      // Get all sections
+      const sections = ["home", "timeline", "blogs", "personal", "skills"];
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 150 && rect.bottom >= 150;
+        }
+        return false;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
+    };
+
+    window.addEventListener("scroll", scrollHandler);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const scrollToSection = (sectionId) => {
+    // Close mobile menu when clicking on a link
+    updateExpanded(false);
+
     // If we're not on the home page, navigate to home first
     if (location.pathname !== "/") {
       window.location.href = `/#${sectionId.replace("#", "")}`;
@@ -37,48 +68,85 @@ function NavBar() {
 
     const section = document.querySelector(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      const navbarHeight = 80; // Account for fixed navbar
+      const elementPosition = section.offsetTop;
+      const offsetPosition = elementPosition - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
-    updateExpanded(false);
   };
 
-  window.addEventListener("scroll", scrollHandler);
+  const handleNavLinkClick = (e) => {
+    // Close mobile menu when clicking outside
+    if (expand) {
+      updateExpanded(false);
+    }
+  };
+
+  const handleToggle = () => {
+    updateExpanded(!expand);
+  };
+
+  const isActiveLink = (sectionId) => {
+    const cleanSectionId = sectionId.replace("#", "");
+    return activeSection === cleanSectionId;
+  };
 
   return (
     <Navbar
       expanded={expand}
       fixed="top"
       expand="md"
-      className={navColour ? "sticky" : "navbar"}
+      className={`custom-navbar ${navColour ? "navbar-scrolled" : ""}`}
     >
       <Container>
+        <Navbar.Brand as={Link} to="/" className="navbar-brand-custom">
+          <span className="brand-text">RS</span>
+        </Navbar.Brand>
+
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
-          onClick={() => {
-            updateExpanded(expand ? false : "expanded");
-          }}
+          onClick={handleToggle}
+          className="custom-toggler"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span className="toggler-icon"></span>
+          <span className="toggler-icon"></span>
+          <span className="toggler-icon"></span>
         </Navbar.Toggle>
+
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mx-auto" defaultActiveKey="#home">
+          <Nav
+            className="ms-auto navbar-nav-custom"
+            onClick={handleNavLinkClick}
+          >
             <Nav.Item>
               <Nav.Link
                 onClick={() => scrollToSection("#home")}
-                style={{ cursor: "pointer" }}
+                className={`nav-link-custom ${
+                  isActiveLink("#home") ? "active" : ""
+                }`}
+                role="button"
+                tabIndex={0}
               >
-                <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
+                <AiOutlineHome className="nav-icon" />
+                <span className="nav-text">Home</span>
               </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
                 onClick={() => scrollToSection("#timeline")}
-                style={{ cursor: "pointer" }}
+                className={`nav-link-custom ${
+                  isActiveLink("#timeline") ? "active" : ""
+                }`}
+                role="button"
+                tabIndex={0}
               >
-                <BsBriefcase style={{ marginBottom: "2px" }} /> Timeline
+                <BsBriefcase className="nav-icon" />
+                <span className="nav-text">Timeline</span>
               </Nav.Link>
             </Nav.Item>
 
@@ -86,86 +154,94 @@ function NavBar() {
               <Nav.Link
                 as={Link}
                 to="/project"
+                className="nav-link-custom"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineFundProjectionScreen
-                  style={{ marginBottom: "2px" }}
-                />{" "}
-                Projects
+                <AiOutlineFundProjectionScreen className="nav-icon" />
+                <span className="nav-text">Projects</span>
               </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
                 onClick={() => scrollToSection("#blogs")}
-                style={{ cursor: "pointer" }}
+                className={`nav-link-custom ${
+                  isActiveLink("#blogs") ? "active" : ""
+                }`}
+                role="button"
+                tabIndex={0}
               >
-                <ImBlog style={{ marginBottom: "2px" }} /> Blogs & Talks
+                <ImBlog className="nav-icon" />
+                <span className="nav-text">Blogs & Talks</span>
               </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
                 onClick={() => scrollToSection("#personal")}
-                style={{ cursor: "pointer" }}
+                className={`nav-link-custom ${
+                  isActiveLink("#personal") ? "active" : ""
+                }`}
+                role="button"
+                tabIndex={0}
               >
-                <AiOutlineFundProjectionScreen
-                  style={{ marginBottom: "2px" }}
-                />{" "}
-                Personal Projects
+                <AiOutlineFundProjectionScreen className="nav-icon" />
+                <span className="nav-text">Personal</span>
               </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
                 onClick={() => scrollToSection("#skills")}
-                style={{ cursor: "pointer" }}
+                className={`nav-link-custom ${
+                  isActiveLink("#skills") ? "active" : ""
+                }`}
+                role="button"
+                tabIndex={0}
               >
-                <BiCodeAlt style={{ marginBottom: "2px" }} /> TechStack
+                <BiCodeAlt className="nav-icon" />
+                <span className="nav-text">Skills</span>
               </Nav.Link>
             </Nav.Item>
 
             {/* Divider */}
-            <Nav.Item className="nav-divider">
+            <div className="nav-divider">
               <span className="divider-line"></span>
-            </Nav.Item>
+            </div>
 
             {/* Social Links */}
             <div className="social-links">
               <a
                 href="https://github.com/rsaim"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="social-link"
+                aria-label="GitHub Profile"
               >
                 <AiFillGithub />
               </a>
               <a
                 href="https://www.linkedin.com/in/raza-saim/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="social-link"
+                aria-label="LinkedIn Profile"
               >
                 <FaLinkedinIn />
               </a>
               <a
                 href="https://stackoverflow.com/users/rsaim"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="social-link"
+                aria-label="Stack Overflow Profile"
               >
                 <FaStackOverflow />
               </a>
               <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = "mailto:saimorsaim[at]gmail[dot]com"
-                    .replace("[at]", "@")
-                    .replace("[dot]", ".");
-                }}
+                href="mailto:saimorsaim@gmail.com"
                 className="social-link"
-                title="saimorsaim[at]gmail[dot]com"
+                aria-label="Email Contact"
               >
                 <MdEmail />
               </a>
