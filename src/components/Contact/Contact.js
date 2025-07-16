@@ -2,14 +2,6 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import emailjs from "@emailjs/browser";
 import Particle from "../Particle";
-import {
-  AiFillGithub,
-  AiFillLinkedin,
-  AiFillMail,
-  AiFillPhone,
-  AiFillEnvironment,
-} from "react-icons/ai";
-import { FaStackOverflow } from "react-icons/fa";
 import "./Contact.css";
 
 function Contact() {
