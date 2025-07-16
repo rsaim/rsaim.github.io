@@ -61,10 +61,22 @@ npm test
 
 # Build optimized production bundle
 npm run build
-
-# Deploy to GitHub Pages
-npm run deploy
 ```
+
+## 🔧 Environment Variables
+
+This project uses EmailJS for contact form functionality. Environment variables are required:
+
+### Required Variables
+- `REACT_APP_EMAILJS_SERVICE_ID`
+- `REACT_APP_EMAILJS_TEMPLATE_ID` 
+- `REACT_APP_EMAILJS_PUBLIC_KEY`
+
+### Setup
+- **Local**: Create `.env` file in root directory
+- **Production**: Add as GitHub Secrets in repository settings
+
+The contact form will show an error if these variables are not configured.
 
 ## 🎨 UI/UX Features
 
@@ -121,6 +133,21 @@ const TimelineWrapper = () => (
 - **Error Tracking**: Sentry integration
 - **User Behavior**: Hotjar heatmaps
 - **API Monitoring**: Custom dashboard
+
+## 🚀 Deployment
+
+This project uses GitHub Actions for automated deployment to GitHub Pages. The deployment process:
+
+1. **Automatic Triggers**: Deploys on every push to the `main` branch
+2. **Environment Variables**: Automatically injects secrets during build
+3. **Build Process**: Creates optimized production bundle
+4. **Deployment**: Publishes to GitHub Pages with custom domain
+
+### Manual Deployment
+You can also trigger deployment manually:
+1. Go to repository → Actions
+2. Select "Deploy to GitHub Pages" workflow
+3. Click "Run workflow" → "Run workflow"
 
 ## 🔒 Domain & GitHub Pages Verification
 

@@ -23,12 +23,13 @@ function Contact() {
   const [submitStatus, setSubmitStatus] = useState(null);
 
   // EmailJS Configuration
-  const EMAILJS_SERVICE_ID =
-    process.env.REACT_APP_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
-  const EMAILJS_TEMPLATE_ID =
-    process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
-  const EMAILJS_PUBLIC_KEY =
-    process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+  const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+  // Check if environment variables are set
+  const isEmailJSConfigured =
+    EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +53,13 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if EmailJS is configured
+    if (!isEmailJSConfigured) {
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus(null), 5000);
+      return;
+    }
 
     // Validate form
     const validationError = validateForm();
@@ -126,6 +134,23 @@ function Contact() {
             <Col lg={12} md={12} className="contact-form-container">
               <div className="contact-form-card">
                 <h3 className="contact-form-title">Send Me a Message</h3>
+
+                {!isEmailJSConfigured && (
+                  <Alert variant="danger" className="contact-alert">
+                    <strong>Contact form is not configured.</strong> Please set
+                    up the following environment variables:
+                    <br />
+                    • REACT_APP_EMAILJS_SERVICE_ID
+                    <br />
+                    • REACT_APP_EMAILJS_TEMPLATE_ID
+                    <br />
+                    • REACT_APP_EMAILJS_PUBLIC_KEY
+                    <br />
+                    <br />
+                    For local development, create a <code>.env</code> file. For
+                    production, add these as GitHub Secrets.
+                  </Alert>
+                )}
 
                 {submitStatus === "success" && (
                   <Alert variant="success" className="contact-alert">
@@ -217,9 +242,13 @@ function Contact() {
                   <Button
                     type="submit"
                     className="contact-submit-btn"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !isEmailJSConfigured}
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isSubmitting
+                      ? "Sending..."
+                      : !isEmailJSConfigured
+                      ? "Form Not Configured"
+                      : "Send Message"}
                   </Button>
                 </Form>
               </div>
