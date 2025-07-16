@@ -204,6 +204,18 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
+            <Nav.Item>
+              <Nav.Link
+                as={Link}
+                to="/contact"
+                className="nav-link-custom"
+                onClick={() => updateExpanded(false)}
+              >
+                <MdEmail className="nav-icon" />
+                <span className="nav-text">Contact</span>
+              </Nav.Link>
+            </Nav.Item>
+
             {/* Divider */}
             <div className="nav-divider">
               <span className="divider-line"></span>
