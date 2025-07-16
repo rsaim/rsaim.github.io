@@ -7,7 +7,6 @@ import {
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiFillGithub,
-  AiFillInstagram,
 } from "react-icons/ai";
 import { FaLinkedinIn, FaStackOverflow } from "react-icons/fa";
 import { ImBlog } from "react-icons/im";
