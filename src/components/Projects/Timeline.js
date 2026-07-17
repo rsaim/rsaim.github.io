@@ -187,7 +187,7 @@ function Timeline() {
           "Python",
           "Golang",
         ],
-        icon: "https://cdn.brandfetch.io/arbor.io/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed",
+        icon: "https://cdn.prod.website-files.com/6963e9afe61b413e99f93a2d/696400132ebb28275caa2355_Do_Green%20logo_black%20background.png",
         color: "#a855f7",
       },
       {
@@ -253,7 +253,7 @@ function Timeline() {
         location: "New York, NY",
         description: "Trading Infrastructure",
         skills: ["Python", "Trading Systems", "Leadership", "Serialization"],
-        icon: "https://media.licdn.com/dms/image/v2/D5622AQEmnR_mX_RsZQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1720354826664?e=2147483647&v=beta&t=K6q76GPfKW-jhw5k9S_yRQeKIipWtQNxmtbLwF73V7o",
+        icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMD--TEgCw4IoboWF_khxYK5427gtrkbmO3BXaFNdYpURpBy-iBTbtP-LP&s=10",
         color: "#a855f7",
       },
       {
@@ -282,7 +282,7 @@ function Timeline() {
         location: "New Delhi, India",
         description: "Object Tracking and Computer Vision Research",
         skills: ["ML", "AI", "CV", "Research", "Publications"],
-        icon: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Defence_Research_and_Development_Organisation.svg/1200px-Defence_Research_and_Development_Organisation.svg.png",
+        icon: "https://img.wikiwand.com/wikipedia/en/thumb/1/1d/Defence_Research_and_Development_Organisation.svg/1280px-Defence_Research_and_Development_Organisation.svg.png",
         color: "#a855f7",
       },
       {
