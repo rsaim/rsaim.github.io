@@ -6,8 +6,10 @@ function TypewriterIntro() {
     <Typewriter
       options={{
         strings: [
-          "Software Engineer focussed on Backend and GenAI systems",
-          "Core Python Expert",
+          "Senior Software Engineer @ StubHub — GenAI Infra / Marketplace Ops",
+          "Multi-Agent Systems, MCP, LangGraph, Claude Code",
+          "Real-time Voice Agents • Hybrid RAG • LLM-as-judge",
+          "Core Python Expert • C#/.NET 8 • Go",
           "Open Source Contributor",
         ],
         autoStart: true,

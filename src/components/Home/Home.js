@@ -72,33 +72,25 @@ function Home() {
             <Col md={8} className="home-about-description">
               <h1 style={{ fontSize: "2.2em", marginBottom: "20px" }}>
                 <span className="purple">
-                  A Backend & GenAI-focused Software Engineer
+                  Senior Software Engineer — GenAI Infra & Marketplace Ops
                 </span>
               </h1>
               <p
                 className="home-about-body"
                 style={{ fontSize: "1.1em", lineHeight: "1.6" }}
               >
-                👨‍💻 I specialize in building large-scale, production-grade
-                software — from ⚙️ scalable backend systems and 🌐 full-stack
-                apps to 🧠 agentic GenAI workflows.
+                Building agentic GenAI infrastructure at{" "}
+                <b className="purple">StubHub Holdings</b> — multi-agent
+                systems, MCP, LangGraph, real-time voice agents, and hybrid
+                RAG.
                 <br />
                 <br />
-                🧰 My stack includes expert-level{" "}
-                <b className="purple">Core Python 🐍</b>,{" "}
-                <b className="purple">Golang 🦫</b>,{" "}
-                <b className="purple">JavaScript/TypeScript ⚡</b>,{" "}
-                <b className="purple">C/C++ 🚀</b>,{" "}
-                <b className="purple">Java ☕</b>, and{" "}
-                <b className="purple">cloud-native development ☁️</b>.
-                <br />
-                <br />
-                🤖 My work blends{" "}
-                <b className="purple">
-                  Generative AI, ML, cloud architecture, and DevOps
-                </b>{" "}
-                — crafting systems that are not only intelligent, but also
-                resilient, reliable, and scalable at scale 📈.
+                Prior: GenAI middleware and distributed identity resolution at{" "}
+                <b className="purple">LiveRamp</b>; LLM-powered post-trade
+                services at <b className="purple">Bloomberg</b>; five years
+                leading trading infrastructure and CPython-internals work at{" "}
+                <b className="purple">D. E. Shaw</b>. MS in CS from NYU
+                Courant.
               </p>
             </Col>
           </Row>

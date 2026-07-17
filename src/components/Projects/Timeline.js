@@ -146,8 +146,33 @@ function Timeline() {
   const timelineData = React.useMemo(
     () => [
       {
+        id: 0,
+        year: "2026 - Present",
+        type: "work",
+        title: "Senior Software Engineer (GenAI Infra / Marketplace Operations)",
+        company: "StubHub Holdings, Inc.",
+        location: "New York, NY",
+        description:
+          "GenAI infra for Marketplace Operations. Multi-agent systems, MCP, LangGraph, real-time voice agents, hybrid RAG.",
+        skills: [
+          "C#/.NET 8",
+          "Claude Code",
+          "MCP",
+          "LangGraph",
+          "LangSmith",
+          "Multi-agent",
+          "Voice Agents",
+          "Hybrid RAG",
+          "LLM-as-judge",
+          "Azure",
+          "AWS",
+        ],
+        icon: "https://cdn.brandfetch.io/stubhub.com/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed",
+        color: "#a855f7",
+      },
+      {
         id: 1,
-        year: "2024 - Present",
+        year: "2024 - 2026",
         type: "work",
         title: "Senior Software Engineer",
         company: "LiveRamp Holdings, Inc.",

@@ -25,18 +25,20 @@ function AboutCard() {
             <br />
             <br />
             Currently, I'm working as a Senior Software Engineer at{" "}
-            <span className="purple">LiveRamp Holdings, Inc</span> on the
-            Identity Engineering team. My work focuses on architecting{" "}
+            <span className="purple">StubHub Holdings, Inc</span> on the GenAI
+            Infra / Marketplace Operations team. My work focuses on architecting{" "}
             <span className="purple">
-              GenAI middleware platforms, developing RAG pipelines, and building
-              agentic AI systems
+              multi-agent LLM systems, MCP-based tooling, and agentic pipelines
+              with LangGraph and Claude Code
             </span>{" "}
-            for real-time identity resolution. I also work on{" "}
+            — shipping platforms like{" "}
             <span className="purple">
-              agentic AI for OnCall triage, Kubernetes agents, and SQL
-              optimization in SingleStore and PostgreSQL
+              BDD-AI (Gherkin-native test-generation), TRE-AI (agentic
+              ticket-resolution engine), and VOX-AI (real-time voice agent)
             </span>{" "}
-            for high-performance distributed systems.
+            with hybrid RAG (BM25 + dense + cross-encoder reranking) and
+            LLM-as-judge evaluation across a marketplace spanning 100+
+            countries.
             <br />
             <br />
             Apart from coding, some following are some of activities that I love

@@ -9,11 +9,26 @@ function ProjectCards(props) {
       aria-label={`Project: ${props.title}`}
     >
       <div className="project-list-image">
-        <img
-          src={props.imgPath}
-          alt={`${props.title} preview`}
-          className="project-list-img"
-        />
+        {props.link && props.link !== "#" ? (
+          <a
+            href={props.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${props.title}`}
+          >
+            <img
+              src={props.imgPath}
+              alt={`${props.title} preview`}
+              className="project-list-img"
+            />
+          </a>
+        ) : (
+          <img
+            src={props.imgPath}
+            alt={`${props.title} preview`}
+            className="project-list-img"
+          />
+        )}
         <div className="project-list-overlay">
           <div className="project-type-badge">
             {props.isBlog ? (

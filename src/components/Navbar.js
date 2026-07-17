@@ -241,7 +241,7 @@ function NavBar() {
                 <FaLinkedinIn />
               </a>
               <a
-                href="https://stackoverflow.com/users/rsaim"
+                href="https://stackoverflow.com/users/6463555/saim-raza"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"

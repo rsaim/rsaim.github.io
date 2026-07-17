@@ -418,3 +418,5 @@ site/
 
 node_modules/
 
+.codegraph
+.serena

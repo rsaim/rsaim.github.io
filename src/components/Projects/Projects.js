@@ -3,15 +3,90 @@ import { Container } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
 import "./Projects.css";
+import bddAiLogo from "../../Assets/Projects/bdd-ai.png";
+import treAiLogo from "../../Assets/Projects/tre-ai.jpg";
+import voxAiLogo from "../../Assets/Projects/vox-ai.jpg";
+import liverampBlog from "../../Assets/Projects/liveramp-blog.jpg";
+import liverampCtv from "../../Assets/Projects/liveramp-ctv.png";
+import pickleImg from "../../Assets/Projects/pickle.jpg";
+import profileImg from "../../Assets/Projects/profile.jpg";
+import py2to3Img from "../../Assets/Projects/py2to3.jpg";
+import pyflybyImg from "../../Assets/Projects/pyflyby.png";
+import citiImg from "../../Assets/Projects/citi.jpg";
+import drdoCvImg from "../../Assets/Projects/drdo-cv.gif";
+import proxyImg from "../../Assets/Projects/proxy.jpg";
+import pyconImg from "../../Assets/Projects/pycon.jpg";
+import instasanityImg from "../../Assets/Projects/instasanity.png";
+import chromeExtImg from "../../Assets/Projects/chrome-ext.png";
+import dnsImg from "../../Assets/Projects/dns.jpg";
+import jeevanstambhImg from "../../Assets/Projects/jeevanstambh.jpg";
 
 // Project data organized by sections
 const projectData = {
+  stubhub: {
+    title: "StubHub Holdings - GenAI Infra / Marketplace Operations",
+    projects: [
+      {
+        imgPath: bddAiLogo,
+        isBlog: false,
+        title: "BDD-AI: Gherkin Native Integration Testing Suite",
+        description:
+          "Gherkin-native test-generation platform. Multi-agent codegen pipeline (planner / writer / critic) with Claude Code as the codegen agent, coordinated via Model Context Protocol (MCP) for live codebase context. Self-correcting reflection loops and JSON-schema-validated outputs.",
+        technologies: [
+          "Claude Code",
+          "MCP",
+          "Multi-agent",
+          "Reflection Loops",
+          "JSON-schema",
+          "Gherkin/BDD",
+          "C#/.NET 8",
+        ],
+        link: "https://cucumber.io/docs/gherkin/",
+      },
+      {
+        imgPath: treAiLogo,
+        isBlog: false,
+        title: "TRE-AI — Agentic Ticket-Resolution Engine",
+        description:
+          "Agentic ticket-resolution engine on declarative DAGs (JSON Decision Model + Windmill OpenFlow Spec). Routing → specialist → validator → audit multi-agent supervisor with confidence-thresholded human-in-the-loop, structured tool calling, and LLM-as-judge for continuous quality eval, prompt versioning, and drift detection.",
+        technologies: [
+          "LangGraph",
+          "LangSmith",
+          "Windmill/OpenFlow",
+          "Multi-agent Supervisor",
+          "LLM-as-judge",
+          "Human-in-the-loop",
+          "Tool Use",
+          "C#/.NET 8",
+        ],
+        link: "https://www.windmill.dev/",
+      },
+      {
+        imgPath: voxAiLogo,
+        isBlog: false,
+        title: "VOX-AI — Real-Time Conversational Voice Agent",
+        description:
+          "Real-time voice agent for internal operations: streaming STT → LangGraph multi-agent reasoner (retrieval / Claude Sonnet 4.6 extended thinking / safety & guardrails) → low-latency TTS over WebRTC. Hybrid retrieval (BM25 + dense + cross-encoder reranking), barge-in / interruption handling, and voice-activity-aware turn-taking.",
+        technologies: [
+          "Voice Agents",
+          "WebRTC",
+          "Streaming STT/TTS",
+          "LangGraph",
+          "Claude Sonnet 4.6",
+          "Hybrid RAG",
+          "BM25 + Dense + Reranking",
+          "VAD / Barge-in",
+          "LangSmith",
+        ],
+        link: "https://claude.com/customers/stubhub",
+      },
+    ],
+  },
   liveramp: {
     title: "LiveRamp Holdings - GenAI & Infrastructure",
     projects: [
       {
-        imgPath:
-          "https://liveramp.com/wp-content/uploads/2022/02/Blog-post-header_LiveRamps-Brand-Identity_488x436.jpg",
+        imgPath: liverampBlog,
         isBlog: false,
         title: "GenAI & Infrastructure Projects",
         description: "Details not disclosed",
@@ -30,8 +105,7 @@ const projectData = {
         link: "#",
       },
       {
-        imgPath:
-          "https://docs.liveramp.com/connect/en/image/uuid-652d9f1b-51a5-b014-0db2-33f4c429995f.png",
+        imgPath: liverampCtv,
         isBlog: false,
         title: "Real-time Identity Resolution & CTV Platform",
         description: "Details not disclosed",
@@ -57,8 +131,7 @@ const projectData = {
     title: "D. E. Shaw & Co. - Trading & Infrastructure",
     projects: [
       {
-        imgPath:
-          "https://files.realpython.com/media/Object-Serialization-With-the-Python-Pickle-Module_Watermarked.8e4667c2f71f.jpg",
+        imgPath: pickleImg,
         isBlog: false,
         title: "High-Performance Serialization Library",
         description:
@@ -67,8 +140,7 @@ const projectData = {
         link: "https://www.youtube.com/watch?v=u3QyAGVE2n4&ab_channel=PythonIndia",
       },
       {
-        imgPath:
-          "https://files.realpython.com/media/How-to-Profile-the-Performance-of-Your-Python-Code_Watermarked.d85e91e64471.jpg",
+        imgPath: profileImg,
         isBlog: false,
         title: "Performance Monitoring Framework",
         description:
@@ -77,8 +149,7 @@ const projectData = {
         link: "#",
       },
       {
-        imgPath:
-          "https://www.softwebsolutions.com/wp-content/uploads/2022/10/Python-blog.jpg",
+        imgPath: py2to3Img,
         isBlog: false,
         title: "Python 2 to 3 Migration",
         description:
@@ -87,8 +158,7 @@ const projectData = {
         link: "#",
       },
       {
-        imgPath:
-          "https://opengraph.githubassets.com/9b005a19198ae1733234f7a734bb6cd840b1645b43d82d2af0f7a02f052755a9/deshaw/pyflyby",
+        imgPath: pyflybyImg,
         isBlog: false,
         title: "Pyflyby - Open Source Contribution",
         description:
@@ -102,8 +172,7 @@ const projectData = {
     title: "Other Professional Work",
     projects: [
       {
-        imgPath:
-          "https://media.licdn.com/dms/image/v2/D5610AQHIjSgb2DgLhg/image-shrink_800/image-shrink_800/0/1733421089914?e=2147483647&v=beta&t=XSr9OdpRL_PphU_NZggXyjWW2NolQFodK4rbUgYwqAM",
+        imgPath: citiImg,
         isBlog: false,
         title: "Robothon Trading Platform - Citi",
         description:
@@ -119,8 +188,7 @@ const projectData = {
         link: "#",
       },
       {
-        imgPath:
-          "https://ars.els-cdn.com/content/image/1-s2.0-S0957417417X00067-cov200h.gif",
+        imgPath: drdoCvImg,
         isBlog: false,
         title: "Advanced Object Tracking Algorithm - DRDO",
         description:
@@ -140,8 +208,7 @@ const projectData = {
     title: "Technical Blogs & Talks",
     projects: [
       {
-        imgPath:
-          "https://kinsta.com/wp-content/uploads/2023/02/what-is-a-proxy.jpg",
+        imgPath: proxyImg,
         isBlog: true,
         title: "Create Your Own HTTP Proxy Using Google Cloud Compute Engine",
         description:
@@ -156,7 +223,7 @@ const projectData = {
         link: "https://medium.com/@rsaim/create-your-own-http-proxy-using-google-cloud-compute-engine-791f82db547a",
       },
       {
-        imgPath: "https://i.ytimg.com/vi/u3QyAGVE2n4/sddefault.jpg",
+        imgPath: pyconImg,
         isBlog: true,
         title: "PyCon India 2020 Talk",
         description:
@@ -170,8 +237,7 @@ const projectData = {
     title: "Personal & Open Source Projects",
     projects: [
       {
-        imgPath:
-          "https://github.com/rsaim/instasanity/raw/main/image/README/1751515431775.png",
+        imgPath: instasanityImg,
         isBlog: false,
         title: "Instasanity - AI Instagram Cleanup",
         description:
@@ -187,8 +253,7 @@ const projectData = {
         link: "https://github.com/rsaim/instasanity",
       },
       {
-        imgPath:
-          "https://miro.medium.com/v2/resize:fit:1200/1*J7CqaSkb9X1l-TmGH5fdBQ.png",
+        imgPath: chromeExtImg,
         isBlog: false,
         title: "Chrome Extension - Educative",
         description:
@@ -197,7 +262,7 @@ const projectData = {
         link: "https://github.com/rsaim/chrome-extension-educative",
       },
       {
-        imgPath: "https://i.ytimg.com/vi/okUIQB4HeIU/maxresdefault.jpg",
+        imgPath: dnsImg,
         isBlog: false,
         title: "DNS Server Application",
         description:
@@ -206,7 +271,7 @@ const projectData = {
         link: "https://github.com/rsaim/dns_app",
       },
       {
-        imgPath: "https://i.ytimg.com/vi/GJi8yVRMLys/mqdefault.jpg",
+        imgPath: jeevanstambhImg,
         isBlog: false,
         title: "Jeevanstambh Foundation Website",
         description:
