@@ -46,7 +46,7 @@ const projectData = {
       {
         imgPath: treAiLogo,
         isBlog: false,
-        title: "TRE-AI — Agentic Ticket-Resolution Engine",
+        title: "TRE-AI: Agentic Ticket-Resolution Engine",
         description:
           "Agentic ticket-resolution engine on declarative DAGs (JSON Decision Model + Windmill OpenFlow Spec). Routing → specialist → validator → audit multi-agent supervisor with confidence-thresholded human-in-the-loop, structured tool calling, and LLM-as-judge for continuous quality eval, prompt versioning, and drift detection.",
         technologies: [
@@ -64,7 +64,7 @@ const projectData = {
       {
         imgPath: voxAiLogo,
         isBlog: false,
-        title: "VOX-AI — Real-Time Conversational Voice Agent",
+        title: "VOX-AI: Real-Time Conversational Voice Agent",
         description:
           "Real-time voice agent for internal operations: streaming STT → LangGraph multi-agent reasoner (retrieval / Claude Sonnet 4.6 extended thinking / safety & guardrails) → low-latency TTS over WebRTC. Hybrid retrieval (BM25 + dense + cross-encoder reranking), barge-in / interruption handling, and voice-activity-aware turn-taking.",
         technologies: [
