@@ -12,12 +12,11 @@
 
 ## 🎯 Key Features
 
-- **Interactive Experience Timeline**: Custom-built with React Flow, featuring smooth animations and dynamic data visualization
-- **Modern Tech Stack**: React.js with Hooks, Custom CSS Modules, and Performance Optimizations
-- **Responsive Design**: Mobile-first approach with fluid layouts and breakpoints
-- **Performance Focused**: Optimized bundle size, lazy loading, and efficient state management
-- **Accessibility**: WCAG compliant with ARIA labels and keyboard navigation
-- **CI/CD**: Automated deployment pipeline with GitHub Actions
+- **Career Timeline**: Custom CSS-grid Gantt on desktop (proportional bar length = tenure across Full-time / Education / Internships lanes) with a chronological vertical layout on mobile
+- **Modern Tech Stack**: React 17 with Hooks, React Bootstrap, tsparticles background
+- **Responsive Design**: Mobile-first, horizontal-scroll timeline on desktop, vertical stack under 768px
+- **Accessibility**: ARIA labels, keyboard-navigable interactive elements, semantic HTML
+- **Deployment**: Static build published to GitHub Pages via `gh-pages`
 
 ## 🛠️ Technical Architecture
 
@@ -37,12 +36,12 @@ graph TD
 
 ### Core Technologies
 
-| Category              | Technologies                                                                                                                                                |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Frontend**    | ![React](https://img.shields.io/badge/React-18-blue?logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue?logo=typescript)                 |
-| **Styling**     | ![CSS Modules](https://img.shields.io/badge/CSS-Modules-orange) ![SASS](https://img.shields.io/badge/SASS-Latest-pink?logo=sass)                                |
-| **Performance** | ![Webpack](https://img.shields.io/badge/Webpack-5-blue?logo=webpack) ![Optimization](https://img.shields.io/badge/Optimization-Advanced-green)                  |
-| **Deployment**  | ![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-black?logo=github) ![CI/CD](https://img.shields.io/badge/CI%2FCD-Automated-green?logo=github-actions) |
+| Category              | Technologies                                                                                                                              |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend**    | ![React](https://img.shields.io/badge/React-17-blue?logo=react) ![React Bootstrap](https://img.shields.io/badge/React_Bootstrap-2-purple?logo=bootstrap) |
+| **Styling**     | ![CSS](https://img.shields.io/badge/CSS3-orange?logo=css3) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?logo=bootstrap)   |
+| **Build**       | ![CRA](https://img.shields.io/badge/CRA-react--scripts_5-blue) ![Webpack](https://img.shields.io/badge/Webpack-5-blue?logo=webpack)       |
+| **Deployment**  | ![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-black?logo=github) ![gh-pages](https://img.shields.io/badge/gh--pages-CLI-green) |
 
 ## 💻 Development
 
@@ -89,65 +88,32 @@ The contact form will show an error if these variables are not configured.
   - First Contentful Paint: < 1s
   - Time to Interactive: < 2s
 
-## 📊 Code Quality & Testing
+## 📊 Code Quality
 
-- **Static Analysis**: ESLint with custom rule set
-- **Type Safety**: TypeScript with strict mode
-- **Unit Tests**: Jest with React Testing Library
-- **E2E Tests**: Cypress for critical user paths
-- **Code Coverage**: >90% on core components
-
-## 🚀 Performance Optimizations
-
-```javascript
-// Example of optimized React component with code splitting
-const Timeline = React.lazy(() => import('./components/Timeline'));
-
-const TimelineWrapper = () => (
-  <Suspense fallback={<LoadingSpinner />}>
-    <Timeline />
-  </Suspense>
-);
-```
+- **Static Analysis**: ESLint (`react-app` / `react-app/jest` presets)
+- **Formatting**: Default CRA conventions
+- **Build**: `react-scripts` build with production optimizations
 
 ## 📱 Responsive Design Strategy
 
-| Breakpoint | Target Devices | Layout Changes               |
-| ---------- | -------------- | ---------------------------- |
-| < 480px    | Mobile         | Single column, condensed nav |
-| 480-768px  | Tablet         | Two columns, expanded cards  |
-| 768-1024px | Small Desktop  | Grid layout, hover effects   |
-| > 1024px   | Large Desktop  | Full experience, animations  |
-
-## 🔜 Roadmap
-
-- [ ] Add WebGL-powered 3D background animations
-- [ ] Implement server-side rendering for better SEO
-- [ ] Add blog section with MDX support
-- [ ] Integrate with Notion API for dynamic content
-- [ ] Add interactive project demos
-
-## 📈 Analytics & Monitoring
-
-- **Performance Monitoring**: Google Analytics 4
-- **Error Tracking**: Sentry integration
-- **User Behavior**: Hotjar heatmaps
-- **API Monitoring**: Custom dashboard
+| Breakpoint | Target Devices | Layout Changes                                          |
+| ---------- | -------------- | ------------------------------------------------------- |
+| ≤ 768px    | Mobile         | Timeline flips to vertical stack; nav collapses         |
+| > 768px    | Desktop        | Horizontal Gantt timeline with proportional-length bars |
 
 ## 🚀 Deployment
 
-This project uses GitHub Actions for automated deployment to GitHub Pages. The deployment process:
+Manual deployment to GitHub Pages via `gh-pages`:
 
-1. **Automatic Triggers**: Deploys on every push to the `main` branch
-2. **Environment Variables**: Automatically injects secrets during build
-3. **Build Process**: Creates optimized production bundle
-4. **Deployment**: Publishes to GitHub Pages with custom domain
+```bash
+npm run build   # produces build/
+npm run deploy  # gh-pages -d build → pushes to gh-pages branch
+```
 
-### Manual Deployment
-You can also trigger deployment manually:
-1. Go to repository → Actions
-2. Select "Deploy to GitHub Pages" workflow
-3. Click "Run workflow" → "Run workflow"
+- `homepage` field in `package.json` points at `https://rsaim.github.io`
+- Custom domain preserved via root-level `CNAME` file (`www.rsaim.info`)
+- GitHub Pages auto-serves from `gh-pages` branch after push (~1 min)
+- No CI/CD workflows are wired up; deploy runs from the maintainer's local environment
 
 ## 🔒 Domain & GitHub Pages Verification
 

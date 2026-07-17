@@ -1,365 +1,223 @@
-import React, { useState, useCallback } from "react";
+import React, { useMemo, useState } from "react";
 import { Container } from "react-bootstrap";
-import {
-  ReactFlow,
-  useNodesState,
-  useEdgesState,
-  addEdge,
-  Controls,
-  Background,
-  BackgroundVariant,
-  Panel,
-} from "@xyflow/react";
-import "@xyflow/react/dist/style.css";
 import "./Timeline.css";
+import drdoLogo from "../../Assets/logos/drdo.png";
+import liverampLogo from "../../Assets/logos/liveramp.webp";
+import skilletLogo from "../../Assets/logos/skillet.png";
 
-// Custom Node Component
-const TimelineNode = ({ data }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const BRANDFETCH = "?c=1bfwsmEH20zzEfSNTed";
+const bf = (domain, kind = "fallback") =>
+  kind === "symbol"
+    ? `https://cdn.brandfetch.io/${domain}/symbol/theme/dark/w/400/h/400${BRANDFETCH}`
+    : `https://cdn.brandfetch.io/${domain}/fallback/lettermark/theme/dark/h/256/w/256/icon${BRANDFETCH}`;
 
-  const handleClick = () => {
-    setIsExpanded(!isExpanded);
-    // Add haptic feedback on supported devices
-    if (navigator.vibrate) {
-      navigator.vibrate(50);
-    }
-  };
+const EVENTS = [
+  {
+    id: "stubhub",
+    lane: "work",
+    company: "StubHub Holdings, Inc.",
+    title: "Sr. SWE — GenAI Infra / Marketplace Ops",
+    location: "New York, NY",
+    start: "2026-01",
+    end: null,
+    logo: bf("stubhub.com"),
+    color: "#a855f7",
+  },
+  {
+    id: "liveramp",
+    lane: "work",
+    company: "LiveRamp Holdings, Inc.",
+    title: "Sr. SWE — GenAI & Identity",
+    location: "New York, NY",
+    start: "2023-08",
+    end: "2025-12",
+    logo: liverampLogo,
+    color: "#8b5cf6",
+  },
+  {
+    id: "bloomberg",
+    lane: "work",
+    company: "Bloomberg LP",
+    title: "Sr. SWE — Post Trade",
+    location: "New York, NY",
+    start: "2023-01",
+    end: "2023-07",
+    logo: bf("bloomberg.com"),
+    color: "#f59e0b",
+  },
+  {
+    id: "deshaw",
+    lane: "work",
+    company: "D. E. Shaw & Co.",
+    title: "Tech Lead — Trading Infra",
+    location: "New York, NY",
+    start: "2016-06",
+    end: "2021-08",
+    logo: bf("deshaw.com"),
+    color: "#7c3aed",
+  },
+  {
+    id: "drdo",
+    lane: "work",
+    company: "DRDO",
+    title: "Research Associate — CV",
+    location: "New Delhi, India",
+    start: "2015-05",
+    end: "2016-05",
+    logo: drdoLogo,
+    color: "#ef4444",
+  },
+  {
+    id: "nyu",
+    lane: "edu",
+    company: "NYU Courant",
+    title: "M.S. Computer Science",
+    location: "New York, NY",
+    start: "2021-09",
+    end: "2023-05",
+    logo: bf("nyu.edu"),
+    color: "#d946ef",
+  },
+  {
+    id: "dtu",
+    lane: "edu",
+    company: "Delhi Technological University",
+    title: "B.Tech Math & Computing",
+    location: "New Delhi, India",
+    start: "2012-08",
+    end: "2016-05",
+    logo: bf("dtu.ac.in"),
+    color: "#c026d3",
+  },
+  {
+    id: "citi",
+    lane: "side",
+    company: "Citi",
+    title: "SWE Intern — Robothon",
+    location: "New York, NY",
+    start: "2023-06",
+    end: "2023-08",
+    logo: bf("citi.com"),
+    color: "#0ea5e9",
+  },
+  {
+    id: "skillet",
+    lane: "side",
+    company: "skillet.ai",
+    title: "Founding Engineer (Intern)",
+    location: "New York, NY",
+    start: "2022-09",
+    end: "2023-05",
+    logo: skilletLogo,
+    color: "#10b981",
+  },
+  {
+    id: "nasa",
+    lane: "side",
+    company: "NASA",
+    title: "Cloud Data Eng Intern",
+    location: "New York, NY",
+    start: "2022-05",
+    end: "2022-08",
+    logo: bf("nasa.gov"),
+    color: "#0b3d91",
+  },
+  {
+    id: "pycon",
+    lane: "side",
+    kind: "point",
+    company: "PyCon India 2020",
+    title: "Speaker — HPC in Python",
+    location: "Virtual",
+    start: "2020-10",
+    end: "2020-10",
+    logo: bf("python.org"),
+    color: "#facc15",
+  },
+];
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      handleClick();
-    }
-  };
+const LANES = [
+  { id: "work", label: "Full-time" },
+  { id: "edu", label: "Education" },
+  { id: "side", label: "Internships & Talks" },
+];
 
-  const getTypeIcon = (type) => {
-    switch (type) {
-      case "work":
-        return "💼";
-      case "education":
-        return "🎓";
-      case "achievement":
-        return "🏆";
-      default:
-        return "📍";
-    }
-  };
+const MONTH_NAMES = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
-  const getTypeColor = (type) => {
-    switch (type) {
-      case "work":
-        return "#a855f7";
-      case "education":
-        return "#d946ef";
-      case "achievement":
-        return "#f59e0b";
-      default:
-        return "#6b7280";
-    }
-  };
-
-  return (
-    <div
-      className={`timeline-flow-node ${isExpanded ? "expanded" : ""}`}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-      role="button"
-      aria-label={`${data.title} at ${data.company}`}
-      aria-expanded={isExpanded}
-    >
-      <div className="timeline-flow-content">
-        <div
-          className="timeline-flow-icon"
-          style={{ backgroundColor: getTypeColor(data.type) }}
-          aria-hidden="true"
-        >
-          {data.icon.startsWith("http") ? (
-            <img
-              src={data.icon}
-              alt="Timeline icon"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "50%",
-              }}
-            />
-          ) : (
-            data.icon
-          )}
-        </div>
-
-        <div className="timeline-flow-card">
-          <div className="timeline-flow-header">
-            <div
-              className="timeline-flow-year"
-              aria-label={`Year: ${data.year}`}
-            >
-              {data.year}
-            </div>
-            <div
-              className="timeline-flow-type"
-              aria-label={`Type: ${data.type}`}
-            >
-              {getTypeIcon(data.type)}{" "}
-              {data.type.charAt(0).toUpperCase() + data.type.slice(1)}
-            </div>
-          </div>
-
-          <h3 className="timeline-flow-title">{data.title}</h3>
-          <h4 className="timeline-flow-company">{data.company}</h4>
-          <p className="timeline-flow-location">📍 {data.location}</p>
-
-          {isExpanded && (
-            <div className="timeline-flow-expanded">
-              <p className="timeline-flow-description">{data.description}</p>
-              <div
-                className="timeline-flow-skills"
-                role="list"
-                aria-label="Skills"
-              >
-                {data.skills.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="timeline-flow-skill"
-                    role="listitem"
-                    aria-label={`Skill: ${skill}`}
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+const toMonth = (s) => {
+  const [y, m] = s.split("-").map(Number);
+  return y * 12 + (m - 1);
 };
 
-const nodeTypes = {
-  timelineNode: TimelineNode,
+const fmtRange = (start, end) => {
+  const [sy, sm] = start.split("-").map(Number);
+  const s = `${MONTH_NAMES[sm - 1]} ${sy}`;
+  if (!end) return `${s} – Present`;
+  const [ey, em] = end.split("-").map(Number);
+  const e = `${MONTH_NAMES[em - 1]} ${ey}`;
+  return s === e ? s : `${s} – ${e}`;
+};
+
+const fmtDuration = (start, end) => {
+  const months =
+    (end ? toMonth(end) : toMonth("2026-07")) - toMonth(start) + 1;
+  if (months < 12) return `${months} mo`;
+  const y = Math.floor(months / 12);
+  const m = months % 12;
+  return m === 0 ? `${y} yr${y > 1 ? "s" : ""}` : `${y}y ${m}m`;
+};
+
+const LANE_LABELS = {
+  work: "Full-time",
+  edu: "Education",
+  side: "Internship / Talk",
 };
 
 function Timeline() {
-  const timelineData = React.useMemo(
-    () => [
-      {
-        id: 0,
-        year: "2026 - Present",
-        type: "work",
-        title: "Senior Software Engineer (GenAI Infra / Marketplace Operations)",
-        company: "StubHub Holdings, Inc.",
-        location: "New York, NY",
-        description:
-          "GenAI infra for Marketplace Operations. Multi-agent systems, MCP, LangGraph, real-time voice agents, hybrid RAG.",
-        skills: [
-          "C#/.NET 8",
-          "Claude Code",
-          "MCP",
-          "LangGraph",
-          "LangSmith",
-          "Multi-agent",
-          "Voice Agents",
-          "Hybrid RAG",
-          "LLM-as-judge",
-          "Azure",
-          "AWS",
-        ],
-        icon: "https://cdn.brandfetch.io/stubhub.com/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed",
-        color: "#a855f7",
-      },
-      {
-        id: 1,
-        year: "2024 - 2026",
-        type: "work",
-        title: "Senior Software Engineer",
-        company: "LiveRamp Holdings, Inc.",
-        location: "New York, NY",
-        description: "Backend and GenAI",
-        skills: [
-          "GenAI",
-          "RAG",
-          "Kubernetes",
-          "GCP",
-          "SingleStore",
-          "Python",
-          "Golang",
-        ],
-        icon: "https://cdn.prod.website-files.com/6963e9afe61b413e99f93a2d/696400132ebb28275caa2355_Do_Green%20logo_black%20background.png",
-        color: "#a855f7",
-      },
-      {
-        id: 2,
-        year: "2024",
-        type: "work",
-        title: "Senior Software Engineer",
-        company: "BloomBerg LP",
-        location: "New York, NY",
-        description: "Trading Infra and Market Data",
-        skills: ["Kubernetes", "Python", "C/C++", "React"],
-        icon: "https://data.bloomberglp.com/company/sites/51/2019/08/og-image-generic-lp.png",
-        color: "#a855f7",
-      },
-      {
-        id: 3,
-        year: "2023",
-        type: "education",
-        title: "M.S. in Computer Science",
-        company: "New York University (Courant)",
-        location: "New York, NY",
-        description: "ML/AI",
-        skills: ["Algorithms", "Distributed Systems", "ML", "AI", "DL"],
-        icon: "https://yt3.ggpht.com/-RZYi5isxH_M/AAAAAAAAAAI/AAAAAAAAAAA/rmWpoe2qZzI/s900-c-k-no/photo.jpg",
-        color: "#d946ef",
-      },
-      {
-        id: 4,
-        year: "2023",
-        type: "work",
-        title: "Founding Engineer",
-        company: "skillet.ai",
-        location: "New York, NY",
-        description: "DeFi and NFT Marketplace",
-        skills: ["Ethereum", "Smart Contracts", "Decentralized Finance"],
-        icon: "https://uploads-ssl.webflow.com/63823d9415bbb64cd877f3ce/63d18fbc316c63162855c2d0_Frame%201.png",
-        color: "#d946ef",
-      },
-      {
-        id: 5,
-        year: "2022",
-        type: "work",
-        title: "Research Intern",
-        company: "NASA",
-        location: "NYU & Columbia, New York",
-        description: "Peta-Byte scale Data Engineering using Zarr and Dask",
-        skills: [
-          "Research",
-          "Algorithms",
-          "Space Systems",
-          "Data Engineering",
-          "AWS",
-        ],
-        icon: "https://e7.pngegg.com/pngimages/28/842/png-clipart-logo-nasa-insignia-design-brand-nasa-miscellaneous-blue.png",
-        color: "#d946ef",
-      },
-      {
-        id: 6,
-        year: "2016 - 2021",
-        type: "work",
-        title: "Tech Lead",
-        company: "D. E. Shaw & Co.",
-        location: "New York, NY",
-        description: "Trading Infrastructure",
-        skills: ["Python", "Trading Systems", "Leadership", "Serialization"],
-        icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMD--TEgCw4IoboWF_khxYK5427gtrkbmO3BXaFNdYpURpBy-iBTbtP-LP&s=10",
-        color: "#a855f7",
-      },
-      {
-        id: 7,
-        year: "2020",
-        type: "achievement",
-        title: "PyCon India 2020 Speaker",
-        company: "Python Community",
-        location: "Virtual",
-        description: "National Talk on HPC in Python/C++",
-        skills: [
-          "Public Speaking",
-          "Python",
-          "Parallel Computing",
-          "Community",
-        ],
-        icon: "https://www.citypng.com/public/uploads/preview/hd-python-logo-symbol-transparent-png-735811696257415dbkifcuokn.png",
-        color: "#d946ef",
-      },
-      {
-        id: 8,
-        year: "2015 - 2016",
-        type: "work",
-        title: "Research Associate",
-        company: "DRDO (Defence Research and Development Organisation)",
-        location: "New Delhi, India",
-        description: "Object Tracking and Computer Vision Research",
-        skills: ["ML", "AI", "CV", "Research", "Publications"],
-        icon: "https://img.wikiwand.com/wikipedia/en/thumb/1/1d/Defence_Research_and_Development_Organisation.svg/1280px-Defence_Research_and_Development_Organisation.svg.png",
-        color: "#a855f7",
-      },
-      {
-        id: 9,
-        year: "2012 - 2016",
-        type: "education",
-        title: "Bachelor of Technology",
-        company: "Delhi Technological University (DTU)",
-        location: "New Delhi, India",
-        description: "CS and Applied Mathematics",
-        skills: ["CS", "Applied Mathematics", "Algorithms"],
-        icon: "https://upload.wikimedia.org/wikipedia/en/b/b5/DTU%2C_Delhi_official_logo.png",
-        color: "#d946ef",
-      },
-    ],
-    []
-  );
+  const [selected, setSelected] = useState(null);
 
-  // Convert timeline data to React Flow nodes and edges
-  const createNodesAndEdges = useCallback(() => {
-    // Reverse the timeline data to show chronological progression (oldest to newest)
-    const reversedTimelineData = [...timelineData].reverse();
+  const layout = useMemo(() => {
+    const starts = EVENTS.map((e) => toMonth(e.start));
+    const ends = EVENTS.map((e) =>
+      e.end ? toMonth(e.end) : toMonth("2026-07")
+    );
+    // Add 3-month buffer both sides so first/last bars breathe
+    const min = Math.min(...starts) - 3;
+    const max = Math.max(...ends) + 6;
+    const span = max - min;
 
-    const nodes = reversedTimelineData.map((item, index) => ({
-      id: item.id.toString(),
-      type: "timelineNode",
-      position: {
-        x: index * 380, // Single row with horizontal spacing
-        y: 0, // All at the same vertical level
-      },
-      data: item,
-      draggable: false,
-    }));
+    const pct = (start, end) => {
+      const s = toMonth(start);
+      const e = end ? toMonth(end) : toMonth("2026-07");
+      return {
+        left: ((s - min) / span) * 100,
+        width: Math.max(((e - s) / span) * 100, 0.5),
+      };
+    };
 
-    const edges = [];
-    for (let i = 0; i < reversedTimelineData.length - 1; i++) {
-      edges.push({
-        id: `e${reversedTimelineData[i].id}-${reversedTimelineData[i + 1].id}`,
-        source: reversedTimelineData[i].id.toString(),
-        target: reversedTimelineData[i + 1].id.toString(),
-        animated: true,
-        style: {
-          stroke: "#a855f7",
-          strokeWidth: 4,
-          filter: "drop-shadow(0 0 12px rgba(168, 85, 247, 0.8))",
-          opacity: 1,
-        },
-        type: "straight",
-        markerEnd: "arrowclosed",
-        label: "→",
-        labelStyle: {
-          fontSize: "16px",
-          fontWeight: "bold",
-          color: "#ffffff",
-          background: "rgba(168, 85, 247, 0.8)",
-          padding: "4px 8px",
-          borderRadius: "12px",
-          border: "1px solid rgba(255, 255, 255, 0.2)",
-        },
-        labelBgStyle: {},
-      });
+    const startYear = Math.floor(min / 12);
+    const endYear = Math.ceil(max / 12);
+    const yearTicks = [];
+    for (let y = startYear; y <= endYear; y++) {
+      const pos = ((y * 12 - min) / span) * 100;
+      if (pos >= 0 && pos <= 100) yearTicks.push({ year: y, pos });
     }
 
-    console.log("Generated edges:", edges);
-    console.log("Generated nodes:", nodes.length);
-
-    return { nodes, edges };
-  }, [timelineData]);
-
-  const { nodes: initialNodes, edges: initialEdges } = createNodesAndEdges();
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-
-  const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges]
-  );
+    return { pct, yearTicks };
+  }, []);
 
   return (
     <Container fluid className="timeline-section" id="timeline">
@@ -367,56 +225,153 @@ function Timeline() {
         <h2 className="timeline-title">
           Career <strong className="purple">Timeline</strong>
         </h2>
-        <p className="timeline-subtitle">Career • Education • Milestones</p>
+        <p className="timeline-subtitle">
+          Full-time • Education • Internships & Talks
+          <br />
+          <span className="timeline-hint">
+            Bar length = tenure · click for details
+          </span>
+        </p>
       </div>
 
-      <div className="timeline-flow-container">
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          nodeTypes={nodeTypes}
-          fitView
-          fitViewOptions={{
-            padding: 0.1,
-            minZoom: 0.5,
-            maxZoom: 1.5,
-          }}
-          attributionPosition="top-right"
-          style={{
-            background: "transparent",
-          }}
-          minZoom={0.3}
-          maxZoom={2}
-          defaultViewport={{ x: 0, y: 0, zoom: 0.8 }}
-        >
-          <Background
-            variant={BackgroundVariant.Dots}
-            gap={20}
-            size={1}
-            color="#a855f7"
-          />
-          <Controls
-            style={{
-              button: {
-                backgroundColor: "#1a1a1a",
-                border: "1px solid #a855f7",
-                color: "#ffffff",
-              },
-            }}
-          />
-          <Panel position="bottom-center">
-            <div className="timeline-interaction-hint">
-              <p>
-                Zoom or click on nodes to expand details • Use controls to
-                navigate
-              </p>
+      <div className="gantt-scroll-wrap" data-scrollable="true">
+        <div className="gantt-scroll-hint" aria-hidden="true">
+          swipe →
+        </div>
+        <div className="gantt-scroll">
+        <div className="gantt-viewport">
+          <div className="gantt-axis">
+            {layout.yearTicks.map((t) => (
+              <div
+                key={t.year}
+                className="gantt-year"
+                style={{ left: `${t.pos}%` }}
+              >
+                <span className="gantt-year-label">{t.year}</span>
+                <span className="gantt-year-tick" />
+              </div>
+            ))}
+          </div>
+
+          {LANES.map((lane) => (
+            <div key={lane.id} className="gantt-lane">
+              <div className="gantt-lane-label">{lane.label}</div>
+              <div className="gantt-lane-track">
+                {layout.yearTicks.map((t) => (
+                  <div
+                    key={t.year}
+                    className="gantt-gridline"
+                    style={{ left: `${t.pos}%` }}
+                  />
+                ))}
+                {EVENTS.filter((ev) => ev.lane === lane.id).map((ev) => {
+                  const { left, width } = layout.pct(ev.start, ev.end);
+                  const isPoint = ev.kind === "point";
+                  const isNarrow = !isPoint && width < 10;
+                  const isActive = selected === ev.id;
+                  return (
+                    <button
+                      key={ev.id}
+                      className={`gantt-bar${
+                        isPoint ? " gantt-bar--point" : ""
+                      }${isNarrow ? " gantt-bar--narrow" : ""}${
+                        isActive ? " gantt-bar--active" : ""
+                      }`}
+                      style={{
+                        left: `${left}%`,
+                        width: isPoint ? "auto" : `${width}%`,
+                        background: `linear-gradient(135deg, ${ev.color}cc, ${ev.color}66)`,
+                        borderColor: ev.color,
+                      }}
+                      onClick={() => setSelected(isActive ? null : ev.id)}
+                      aria-label={`${ev.title} at ${ev.company}`}
+                      title={`${ev.company} — ${ev.title} · ${fmtRange(
+                        ev.start,
+                        ev.end
+                      )}`}
+                    >
+                      <img
+                        src={ev.logo}
+                        alt=""
+                        className="gantt-bar-logo"
+                      />
+                      {!isPoint && !isNarrow && (
+                        <span className="gantt-bar-text">
+                          <span className="gantt-bar-title">
+                            {ev.company}
+                          </span>
+                          <span className="gantt-bar-sub">{ev.title}</span>
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </Panel>
-        </ReactFlow>
+          ))}
+        </div>
+        </div>
       </div>
+
+      <ol className="tl-vertical">
+        {[...EVENTS]
+          .sort((a, b) => toMonth(b.start) - toMonth(a.start))
+          .map((ev) => (
+            <li key={ev.id} className="tl-item">
+              <div
+                className="tl-marker"
+                style={{ borderColor: ev.color, background: `${ev.color}22` }}
+              >
+                <img src={ev.logo} alt="" className="tl-marker-logo" />
+              </div>
+              <div className="tl-body">
+                <span
+                  className="tl-lane"
+                  style={{ color: ev.color, borderColor: `${ev.color}55` }}
+                >
+                  {LANE_LABELS[ev.lane]}
+                </span>
+                <h3 className="tl-title">{ev.title}</h3>
+                <div className="tl-company">{ev.company}</div>
+                <div className="tl-meta">
+                  <span>{fmtRange(ev.start, ev.end)}</span>
+                  <span aria-hidden="true">·</span>
+                  <span>{fmtDuration(ev.start, ev.end)}</span>
+                </div>
+              </div>
+            </li>
+          ))}
+      </ol>
+
+      {selected &&
+        (() => {
+          const ev = EVENTS.find((e) => e.id === selected);
+          if (!ev) return null;
+          return (
+            <div className="gantt-detail">
+              <img
+                src={ev.logo}
+                alt=""
+                className="gantt-detail-logo"
+                style={{ borderColor: ev.color }}
+              />
+              <div className="gantt-detail-body">
+                <h3 className="gantt-detail-title">{ev.title}</h3>
+                <div className="gantt-detail-company">{ev.company}</div>
+                <div className="gantt-detail-meta">
+                  <span>{fmtRange(ev.start, ev.end)}</span>
+                </div>
+              </div>
+              <button
+                className="gantt-detail-close"
+                onClick={() => setSelected(null)}
+                aria-label="Close details"
+              >
+                ×
+              </button>
+            </div>
+          );
+        })()}
     </Container>
   );
 }
