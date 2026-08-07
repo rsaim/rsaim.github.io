@@ -1,31 +1,15 @@
 {
   "name": "rsaim.github.io portfolio",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
-  "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": true,
-      "configureZshAsDefaultShell": true,
-      "installOhMyZsh": true,
-      "upgradePackages": true
-    },
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest",
-      "ppa": true
-    },
-    "ghcr.io/devcontainers/features/github-cli:1": {}
-  },
+  "workspaceFolder": "/workspaces/rsaim.github.io",
   "forwardPorts": [3000],
   "portsAttributes": {
-    "3000": {
-      "label": "React dev server",
-      "onAutoForward": "openPreview"
-    }
+    "3000": { "label": "React dev server", "visibility": "private" }
   },
-  "onCreateCommand": "sudo apt-get update && sudo apt-get install -y --no-install-recommends curl wget jq ripgrep fd-find fzf bat tree htop less vim nano unzip zip ca-certificates build-essential",
-  "postCreateCommand": "npm install -g @anthropic-ai/claude-code && npm install",
-  "postAttachCommand": {
-    "server": "npm start"
-  },
+  "mounts": [
+    "source=claude-config,target=/home/node/.claude,type=volume"
+  ],
+  "postCreateCommand": "sudo chown -R $(whoami):$(whoami) /home/node/.claude && bash setup.sh claude && bash setup.sh gh && npm install",
   "customizations": {
     "vscode": {
       "extensions": [
