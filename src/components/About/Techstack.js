@@ -2,6 +2,14 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import profile from "../../config/profile.json";
 
+// These badges are rendered by free third-party services (Vercel/Heroku
+// deployments not run by this project) that periodically go down or hit
+// their usage limits - hide the broken-image icon rather than show it
+// indefinitely when that happens.
+function hideOnError(e) {
+  e.currentTarget.style.display = "none";
+}
+
 function TechStack() {
   const { username } = profile.socials.github;
   return (
@@ -278,18 +286,21 @@ function TechStack() {
             src={`https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&locale=en&layout=compact&hide=html,css,scss,php,mako`}
             alt={username}
             style={{ maxWidth: "100%", height: "auto" }}
+            onError={hideOnError}
           />
 
           <img
             src={`https://github-readme-streak-stats.herokuapp.com/?user=${username}&`}
             alt={username}
             style={{ maxWidth: "100%", height: "auto" }}
+            onError={hideOnError}
           />
 
           <img
             src={`https://komarev.com/ghpvc/?username=${username}&label=Profile%20views&color=0e75b6&style=flat`}
             alt={username}
             style={{ maxWidth: "100%", height: "auto" }}
+            onError={hideOnError}
           />
         </div>
       </Container>

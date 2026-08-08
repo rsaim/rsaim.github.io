@@ -1191,6 +1191,19 @@ html {
   padding-top: 10px !important;
 }
 
+.github-calendar-wrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.github-calendar-wrapper > * {
+  /* Let it overflow and scroll on narrow screens instead of squeezing the
+     grid (which would misalign the day squares). */
+  flex-shrink: 0;
+}
+
 /* --------- */
 /* About */
 /* --------- */
