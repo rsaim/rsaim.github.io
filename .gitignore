@@ -13,7 +13,11 @@ jspm_packages/
 .env.test.local
 .env.production.local
 
-# Personal portfolio data (real values — never commit; see src/config/profile.example.json)
+# Personal portfolio data (real values — never commit; see data/profile.example.json)
+# data/profile.json is the canonical source you edit; src/config/profile.json
+# is an auto-generated build-time copy (CRA can't import from outside src/) —
+# both are real data and neither should ever be committed.
+data/profile.json
 src/config/profile.json
 
 # Testing / coverage

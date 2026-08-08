@@ -35,7 +35,7 @@ The template uses these variables:
 - `{{from_email}}` - Sender's email
 - `{{subject}}` - Email subject
 - `{{message}}` - Email message
-- `{{to_name}}` - Your name (from `contact.emailJsToName` in `src/config/profile.json`)
+- `{{to_name}}` - Your name (from `contact.emailJsToName` in `data/profile.json`)
 - `{{sent_date}}` - Date the email was sent
 
 ---

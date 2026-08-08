@@ -5,6 +5,12 @@
 // Never overwrites an existing file, so it's safe to run on every
 // `npm start`/`npm run build`/`npm test` (wired via the pre* npm lifecycle
 // hooks in package.json).
+//
+// data/profile.json is the canonical file you edit. It can't be imported
+// directly by component code, though — Create React App's ModuleScopePlugin
+// blocks imports from outside src/. So this script also syncs it into
+// src/config/profile.json, which is what the app actually imports. That
+// synced copy is fully derived — always overwritten, never edited by hand.
 const fs = require("fs");
 const path = require("path");
 
@@ -20,5 +26,15 @@ function ensure(exampleRelPath, realRelPath) {
   );
 }
 
-ensure("src/config/profile.example.json", "src/config/profile.json");
+function sync(sourceRelPath, destRelPath) {
+  const source = path.join(__dirname, "..", sourceRelPath);
+  const dest = path.join(__dirname, "..", destRelPath);
+  fs.copyFileSync(source, dest);
+}
+
+ensure("data/profile.example.json", "data/profile.json");
 ensure(".env.example", ".env");
+
+// Always re-sync, even when data/profile.json already existed — this is how
+// edits to the canonical file reach the app.
+sync("data/profile.json", "src/config/profile.json");
