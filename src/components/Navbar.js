@@ -6,13 +6,13 @@ import { Link, useLocation } from "react-router-dom";
 import {
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
-  AiFillGithub,
 } from "react-icons/ai";
-import { FaLinkedinIn, FaStackOverflow } from "react-icons/fa";
 import { ImBlog } from "react-icons/im";
 import { BsBriefcase } from "react-icons/bs";
 import { BiCodeAlt } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
+import profile from "../config/profile.json";
+import socialLinks from "./socialLinks";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -103,7 +103,7 @@ function NavBar() {
     >
       <Container>
         <Navbar.Brand as={Link} to="/" className="navbar-brand-custom">
-          <span className="brand-text">RS</span>
+          <span className="brand-text">{profile.identity.initials}</span>
         </Navbar.Brand>
 
         <Navbar.Toggle
@@ -222,40 +222,18 @@ function NavBar() {
 
             {/* Social Links */}
             <div className="social-links">
-              <a
-                href="https://github.com/rsaim"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="GitHub Profile"
-              >
-                <AiFillGithub />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/raza-saim/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="LinkedIn Profile"
-              >
-                <FaLinkedinIn />
-              </a>
-              <a
-                href="https://stackoverflow.com/users/6463555/saim-raza"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="Stack Overflow Profile"
-              >
-                <FaStackOverflow />
-              </a>
-              <a
-                href="mailto:saimorsaim@gmail.com"
-                className="social-link"
-                aria-label="Email Contact"
-              >
-                <MdEmail />
-              </a>
+              {socialLinks.map(({ key, href, label, Icon }) => (
+                <a
+                  key={key}
+                  href={href}
+                  target={key === "email" ? undefined : "_blank"}
+                  rel={key === "email" ? undefined : "noopener noreferrer"}
+                  className="social-link"
+                  aria-label={label}
+                >
+                  <Icon />
+                </a>
+              ))}
             </div>
           </Nav>
         </Navbar.Collapse>

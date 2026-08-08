@@ -35,7 +35,7 @@ The template uses these variables:
 - `{{from_email}}` - Sender's email
 - `{{subject}}` - Email subject
 - `{{message}}` - Email message
-- `{{to_name}}` - Your name (Saim Raza)
+- `{{to_name}}` - Your name (from `contact.emailJsToName` in `src/config/profile.json`)
 - `{{sent_date}}` - Date the email was sent
 
 ---
@@ -85,19 +85,13 @@ REACT_APP_EMAILJS_PUBLIC_KEY=public_key_xxxxxxx
 2. **Navigate to** `http://localhost:3000/contact`
 3. **Fill out the form** with test data
 4. **Submit and check** your email inbox
-5. **Monitor console** for any errors
+5. **Watch the on-page status banner** for success/error/validation feedback
 
 ### Email Template Testing
 1. **Use EmailJS preview** to test the template design
 2. **Send test emails** to verify formatting
 3. **Check different email clients** (Gmail, Outlook, etc.)
 4. **Verify all template variables** are displaying correctly
-
-### Debug Information
-The form includes console logging to help debug:
-- EmailJS configuration status
-- Form submission results
-- Any error messages
 
 ---
 
@@ -147,7 +141,6 @@ const handleSubmit = async (e) => {
 ✅ **Real-time Feedback** - Success, error, and validation states
 ✅ **Mobile Responsive** - Works perfectly on all devices
 ✅ **Security** - Environment variables for API keys
-✅ **Debug Logging** - Console logs for troubleshooting
 ✅ **Accessibility** - Proper focus states and ARIA labels
 ✅ **EmailJS Optimized** - Template is pre-configured for EmailJS compatibility
 

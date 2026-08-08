@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import emailjs from "@emailjs/browser";
 import Particle from "../Particle";
+import profile from "../../config/profile.json";
 import "./Contact.css";
 
 function Contact() {
@@ -64,15 +65,6 @@ function Contact() {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Debug: Log EmailJS configuration
-    console.log("EmailJS Config:", {
-      serviceId: EMAILJS_SERVICE_ID,
-      templateId: EMAILJS_TEMPLATE_ID,
-      publicKey: EMAILJS_PUBLIC_KEY
-        ? "***" + EMAILJS_PUBLIC_KEY.slice(-4)
-        : "NOT_SET",
-    });
-
     try {
       // Send email using EmailJS
       const result = await emailjs.send(
@@ -83,12 +75,10 @@ function Contact() {
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          to_name: "Saim Raza", // Your name
+          to_name: profile.contact.emailJsToName,
         },
         EMAILJS_PUBLIC_KEY
       );
-
-      console.log("EmailJS Result:", result);
 
       if (result.status === 200) {
         setSubmitStatus("success");
@@ -96,8 +86,7 @@ function Contact() {
       } else {
         setSubmitStatus("error");
       }
-    } catch (error) {
-      console.error("Email sending failed:", error);
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);

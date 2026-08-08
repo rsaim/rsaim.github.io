@@ -1,17 +1,12 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
+import profile from "../../config/profile.json";
 
 function TypewriterIntro() {
   return (
     <Typewriter
       options={{
-        strings: [
-          "Senior Software Engineer @ StubHub — GenAI Infra / Marketplace Ops",
-          "Multi-Agent Systems, MCP, LangGraph, Claude Code",
-          "Real-time Voice Agents • Hybrid RAG • LLM-as-judge",
-          "Core Python Expert • C#/.NET 8 • Go",
-          "Open Source Contributor",
-        ],
+        strings: profile.home.typewriterStrings,
         autoStart: true,
         loop: true,
         deleteSpeed: 10,

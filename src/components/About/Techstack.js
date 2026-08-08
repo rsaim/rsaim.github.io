@@ -1,7 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import profile from "../../config/profile.json";
 
 function TechStack() {
+  const { username } = profile.socials.github;
   return (
     <Container
       fluid
@@ -270,18 +272,18 @@ function TechStack() {
           }}
         >
           <img
-            src="https://github-readme-stats.vercel.app/api/top-langs?username=rsaim&show_icons=true&locale=en&layout=compact&hide=html,css,scss,php,mako"
-            alt="rsaim"
+            src={`https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&locale=en&layout=compact&hide=html,css,scss,php,mako`}
+            alt={username}
           />
 
           <img
-            src="https://github-readme-streak-stats.herokuapp.com/?user=rsaim&"
-            alt="rsaim"
+            src={`https://github-readme-streak-stats.herokuapp.com/?user=${username}&`}
+            alt={username}
           />
 
           <img
-            src="https://komarev.com/ghpvc/?username=rsaim&label=Profile%20views&color=0e75b6&style=flat"
-            alt="rsaim"
+            src={`https://komarev.com/ghpvc/?username=${username}&label=Profile%20views&color=0e75b6&style=flat`}
+            alt={username}
           />
         </div>
       </Container>

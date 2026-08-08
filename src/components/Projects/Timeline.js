@@ -1,140 +1,10 @@
 import React, { useMemo, useState } from "react";
 import { Container } from "react-bootstrap";
 import "./Timeline.css";
-import drdoLogo from "../../Assets/logos/drdo.png";
-import liverampLogo from "../../Assets/logos/liveramp.webp";
-import skilletLogo from "../../Assets/logos/skillet.png";
+import profile from "../../config/profile.json";
+import assetMap from "../../config/assetMap";
 
-const BRANDFETCH = "?c=1bfwsmEH20zzEfSNTed";
-const bf = (domain, kind = "fallback") =>
-  kind === "symbol"
-    ? `https://cdn.brandfetch.io/${domain}/symbol/theme/dark/w/400/h/400${BRANDFETCH}`
-    : `https://cdn.brandfetch.io/${domain}/fallback/lettermark/theme/dark/h/256/w/256/icon${BRANDFETCH}`;
-
-const EVENTS = [
-  {
-    id: "stubhub",
-    lane: "work",
-    company: "StubHub Holdings, Inc.",
-    title: "Sr. SWE — GenAI Infra / Marketplace Ops",
-    location: "New York, NY",
-    start: "2026-01",
-    end: null,
-    logo: bf("stubhub.com"),
-    color: "#a855f7",
-  },
-  {
-    id: "liveramp",
-    lane: "work",
-    company: "LiveRamp Holdings, Inc.",
-    title: "Sr. SWE — GenAI & Identity",
-    location: "New York, NY",
-    start: "2023-08",
-    end: "2025-12",
-    logo: liverampLogo,
-    color: "#8b5cf6",
-  },
-  {
-    id: "bloomberg",
-    lane: "work",
-    company: "Bloomberg LP",
-    title: "Sr. SWE — Post Trade",
-    location: "New York, NY",
-    start: "2023-01",
-    end: "2023-07",
-    logo: bf("bloomberg.com"),
-    color: "#f59e0b",
-  },
-  {
-    id: "deshaw",
-    lane: "work",
-    company: "D. E. Shaw & Co.",
-    title: "Tech Lead — Trading Infra",
-    location: "New York, NY",
-    start: "2016-06",
-    end: "2021-08",
-    logo: bf("deshaw.com"),
-    color: "#7c3aed",
-  },
-  {
-    id: "drdo",
-    lane: "work",
-    company: "DRDO",
-    title: "Research Associate — CV",
-    location: "New Delhi, India",
-    start: "2015-05",
-    end: "2016-05",
-    logo: drdoLogo,
-    color: "#ef4444",
-  },
-  {
-    id: "nyu",
-    lane: "edu",
-    company: "NYU Courant",
-    title: "M.S. Computer Science",
-    location: "New York, NY",
-    start: "2021-09",
-    end: "2023-05",
-    logo: bf("nyu.edu"),
-    color: "#d946ef",
-  },
-  {
-    id: "dtu",
-    lane: "edu",
-    company: "Delhi Technological University",
-    title: "B.Tech Math & Computing",
-    location: "New Delhi, India",
-    start: "2012-08",
-    end: "2016-05",
-    logo: bf("dtu.ac.in"),
-    color: "#c026d3",
-  },
-  {
-    id: "citi",
-    lane: "side",
-    company: "Citi",
-    title: "SWE Intern — Robothon",
-    location: "New York, NY",
-    start: "2023-06",
-    end: "2023-08",
-    logo: bf("citi.com"),
-    color: "#0ea5e9",
-  },
-  {
-    id: "skillet",
-    lane: "side",
-    company: "skillet.ai",
-    title: "Founding Engineer (Intern)",
-    location: "New York, NY",
-    start: "2022-09",
-    end: "2023-05",
-    logo: skilletLogo,
-    color: "#10b981",
-  },
-  {
-    id: "nasa",
-    lane: "side",
-    company: "NASA",
-    title: "Cloud Data Eng Intern",
-    location: "New York, NY",
-    start: "2022-05",
-    end: "2022-08",
-    logo: bf("nasa.gov"),
-    color: "#0b3d91",
-  },
-  {
-    id: "pycon",
-    lane: "side",
-    kind: "point",
-    company: "PyCon India 2020",
-    title: "Speaker — HPC in Python",
-    location: "Virtual",
-    start: "2020-10",
-    end: "2020-10",
-    logo: bf("python.org"),
-    color: "#facc15",
-  },
-];
+const EVENTS = profile.timeline;
 
 const LANES = [
   { id: "work", label: "Full-time" },
@@ -162,6 +32,15 @@ const toMonth = (s) => {
   return y * 12 + (m - 1);
 };
 
+// "Now", as a "YYYY-MM" string — computed once at module load rather than
+// frozen as a literal, so ongoing-role duration/bar-width math never goes
+// stale.
+const nowMonthString = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+};
+const NOW = nowMonthString();
+
 const fmtRange = (start, end) => {
   const [sy, sm] = start.split("-").map(Number);
   const s = `${MONTH_NAMES[sm - 1]} ${sy}`;
@@ -172,8 +51,7 @@ const fmtRange = (start, end) => {
 };
 
 const fmtDuration = (start, end) => {
-  const months =
-    (end ? toMonth(end) : toMonth("2026-07")) - toMonth(start) + 1;
+  const months = (end ? toMonth(end) : toMonth(NOW)) - toMonth(start) + 1;
   if (months < 12) return `${months} mo`;
   const y = Math.floor(months / 12);
   const m = months % 12;
@@ -186,14 +64,17 @@ const LANE_LABELS = {
   side: "Internship / Talk",
 };
 
+// A timeline entry supplies either a `logoKey` (resolved against the bundled
+// local images in assetMap.logos) or a `logoUrl` (an already-resolved CDN
+// URL) — never both. Falls back to no logo if neither is present.
+const resolveLogo = (ev) => ev.logoUrl || assetMap.logos[ev.logoKey] || undefined;
+
 function Timeline() {
   const [selected, setSelected] = useState(null);
 
   const layout = useMemo(() => {
     const starts = EVENTS.map((e) => toMonth(e.start));
-    const ends = EVENTS.map((e) =>
-      e.end ? toMonth(e.end) : toMonth("2026-07")
-    );
+    const ends = EVENTS.map((e) => (e.end ? toMonth(e.end) : toMonth(NOW)));
     // Add 3-month buffer both sides so first/last bars breathe
     const min = Math.min(...starts) - 3;
     const max = Math.max(...ends) + 6;
@@ -201,7 +82,7 @@ function Timeline() {
 
     const pct = (start, end) => {
       const s = toMonth(start);
-      const e = end ? toMonth(end) : toMonth("2026-07");
+      const e = end ? toMonth(end) : toMonth(NOW);
       return {
         left: ((s - min) / span) * 100,
         width: Math.max(((e - s) / span) * 100, 0.5),
@@ -269,6 +150,7 @@ function Timeline() {
                   const isPoint = ev.kind === "point";
                   const isNarrow = !isPoint && width < 10;
                   const isActive = selected === ev.id;
+                  const logo = resolveLogo(ev);
                   return (
                     <button
                       key={ev.id}
@@ -290,11 +172,9 @@ function Timeline() {
                         ev.end
                       )}`}
                     >
-                      <img
-                        src={ev.logo}
-                        alt=""
-                        className="gantt-bar-logo"
-                      />
+                      {logo && (
+                        <img src={logo} alt="" className="gantt-bar-logo" />
+                      )}
                       {!isPoint && !isNarrow && (
                         <span className="gantt-bar-text">
                           <span className="gantt-bar-title">
@@ -316,45 +196,51 @@ function Timeline() {
       <ol className="tl-vertical">
         {[...EVENTS]
           .sort((a, b) => toMonth(b.start) - toMonth(a.start))
-          .map((ev) => (
-            <li key={ev.id} className="tl-item">
-              <div
-                className="tl-marker"
-                style={{ borderColor: ev.color, background: `${ev.color}22` }}
-              >
-                <img src={ev.logo} alt="" className="tl-marker-logo" />
-              </div>
-              <div className="tl-body">
-                <span
-                  className="tl-lane"
-                  style={{ color: ev.color, borderColor: `${ev.color}55` }}
+          .map((ev) => {
+            const logo = resolveLogo(ev);
+            return (
+              <li key={ev.id} className="tl-item">
+                <div
+                  className="tl-marker"
+                  style={{ borderColor: ev.color, background: `${ev.color}22` }}
                 >
-                  {LANE_LABELS[ev.lane]}
-                </span>
-                <h3 className="tl-title">{ev.title}</h3>
-                <div className="tl-company">{ev.company}</div>
-                <div className="tl-meta">
-                  <span>{fmtRange(ev.start, ev.end)}</span>
-                  <span aria-hidden="true">·</span>
-                  <span>{fmtDuration(ev.start, ev.end)}</span>
+                  {logo && <img src={logo} alt="" className="tl-marker-logo" />}
                 </div>
-              </div>
-            </li>
-          ))}
+                <div className="tl-body">
+                  <span
+                    className="tl-lane"
+                    style={{ color: ev.color, borderColor: `${ev.color}55` }}
+                  >
+                    {LANE_LABELS[ev.lane]}
+                  </span>
+                  <h3 className="tl-title">{ev.title}</h3>
+                  <div className="tl-company">{ev.company}</div>
+                  <div className="tl-meta">
+                    <span>{fmtRange(ev.start, ev.end)}</span>
+                    <span aria-hidden="true">·</span>
+                    <span>{fmtDuration(ev.start, ev.end)}</span>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
       </ol>
 
       {selected &&
         (() => {
           const ev = EVENTS.find((e) => e.id === selected);
           if (!ev) return null;
+          const logo = resolveLogo(ev);
           return (
             <div className="gantt-detail">
-              <img
-                src={ev.logo}
-                alt=""
-                className="gantt-detail-logo"
-                style={{ borderColor: ev.color }}
-              />
+              {logo && (
+                <img
+                  src={logo}
+                  alt=""
+                  className="gantt-detail-logo"
+                  style={{ borderColor: ev.color }}
+                />
+              )}
               <div className="gantt-detail-body">
                 <h3 className="gantt-detail-title">{ev.title}</h3>
                 <div className="gantt-detail-company">{ev.company}</div>

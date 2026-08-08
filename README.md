@@ -1,160 +1,91 @@
-# Saim Raza | Software Engineer | GenAI, Backend
+# Portfolio
 
-  [![Portfolio](https://img.shields.io/badge/Portfolio-rsaim.info-purple?style=flat&logo=google-chrome)](https://rsaim.info)
+A React portfolio site — career timeline, project showcase, and a contact
+form — built to be forked and filled in with your own data rather than
+edited in place.
 
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/rsaim)
-  [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat&logo=github)](https://github.com/rsaim)
+## Fork it and make it yours
 
-<h3>Modern, Interactive Portfolio Built with React & Advanced Web Technologies</h3>
-</div>
+All personal content (name, bio, career timeline, projects, social links)
+lives in a single git-ignored config file, not in component source:
 
-![1751754428979](image/README/1751754428979.png)
+1. Fork/clone the repo.
+2. Run `npm install`.
+3. Run `npm start` once — this auto-creates `src/config/profile.json` (from
+   `src/config/profile.example.json`) and `.env` (from `.env.example`) via
+   `scripts/ensure-local-config.js`, if they don't already exist.
+4. Edit `src/config/profile.json` with your own identity, timeline, projects,
+   and social links. Edit `.env` with your site title/description and (if you
+   want a working contact form) your EmailJS credentials.
+5. Restart `npm start`.
 
-## 🎯 Key Features
+Both `profile.json` and `.env` are git-ignored (see `.gitignore`) — your real
+data never gets committed. `profile.example.json` and `.env.example` are the
+tracked templates that ship with the repo.
 
-- **Career Timeline**: Custom CSS-grid Gantt on desktop (proportional bar length = tenure across Full-time / Education / Internships lanes) with a chronological vertical layout on mobile
-- **Modern Tech Stack**: React 17 with Hooks, React Bootstrap, tsparticles background
-- **Responsive Design**: Mobile-first, horizontal-scroll timeline on desktop, vertical stack under 768px
-- **Accessibility**: ARIA labels, keyboard-navigable interactive elements, semantic HTML
-- **Deployment**: Static build published to GitHub Pages via `gh-pages`
+If you add or change images referenced from `profile.json` (timeline company
+logos, project screenshots, your avatar), wire them up in
+`src/config/assetMap.js` — JSON can't `import` a bundled asset, so that file
+is the bridge between the two.
 
-## 🛠️ Technical Architecture
+## Key features
 
-```mermaid
-graph TD
-    A[React Frontend] --> B[Component Layer]
-    B --> C[Custom Hooks]
-    B --> D[State Management]
-    B --> E[UI Components]
-    E --> F[Timeline]
-    E --> G[Project Cards]
-    E --> H[Interactive Elements]
-    I[Performance Layer] --> J[Code Splitting]
-    I --> K[Asset Optimization]
-    I --> L[Cache Strategy]
-```
+- **Career timeline**: CSS-grid Gantt on desktop (bar length = tenure, across
+  Full-time / Education / Internships lanes), chronological vertical layout
+  on mobile.
+- **Project showcase**: grouped sections, each with cards for
+  title/description/tech-stack/link.
+- **Contact form**: EmailJS-powered, no backend required.
+- **Responsive**: mobile-first, horizontal-scroll timeline on desktop,
+  vertical stack under 768px.
 
-### Core Technologies
+## Tech stack
 
-| Category              | Technologies                                                                                                                              |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| **Frontend**    | ![React](https://img.shields.io/badge/React-17-blue?logo=react) ![React Bootstrap](https://img.shields.io/badge/React_Bootstrap-2-purple?logo=bootstrap) |
-| **Styling**     | ![CSS](https://img.shields.io/badge/CSS3-orange?logo=css3) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?logo=bootstrap)   |
-| **Build**       | ![CRA](https://img.shields.io/badge/CRA-react--scripts_5-blue) ![Webpack](https://img.shields.io/badge/Webpack-5-blue?logo=webpack)       |
-| **Deployment**  | ![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-black?logo=github) ![gh-pages](https://img.shields.io/badge/gh--pages-CLI-green) |
+React 17 (Create React App / `react-scripts`), React Bootstrap, tsParticles
+background, `react-icons`, `typewriter-effect`.
 
-## 💻 Development
+## Development
 
 ```bash
-# Clone repository
-git clone https://github.com/rsaim/rsaim.github.io.git
+npm install       # install dependencies
+npm start         # dev server with hot reload (auto-bootstraps local config)
+npm test          # run tests
+npm run build     # production build
+```
 
-# Install dependencies with exact versions
-npm ci
+## Environment variables
 
-# Start development server with hot reload
-npm start
+`.env` (git-ignored, created from `.env.example` on first `npm start`):
 
-# Run test suite
-npm test
+| Variable | Purpose |
+| --- | --- |
+| `REACT_APP_SITE_TITLE` / `REACT_APP_SITE_DESCRIPTION` | Injected into `public/index.html`'s title/meta tags at build time |
+| `REACT_APP_EMAILJS_SERVICE_ID` / `REACT_APP_EMAILJS_TEMPLATE_ID` / `REACT_APP_EMAILJS_PUBLIC_KEY` | EmailJS contact-form config — see `CONTACT_IMPLEMENTATION_GUIDE.md` |
 
-# Build optimized production bundle
+The contact form shows an inline "not configured" message if the EmailJS
+variables are missing, rather than failing silently.
+
+## Deployment
+
+Deployed to GitHub Pages via the `gh-pages` package, run manually:
+
+```bash
 npm run build
+npm run deploy   # gh-pages -d build → pushes to the gh-pages branch
 ```
 
-## 🔧 Environment Variables
+- `homepage` in `package.json` and the root `CNAME` file control where
+  GitHub Pages serves the site — update both if you fork this to a different
+  domain.
+- No CI/CD is wired up; deploy runs from your local environment.
 
-This project uses EmailJS for contact form functionality. Environment variables are required:
+## Project structure
 
-### Required Variables
-- `REACT_APP_EMAILJS_SERVICE_ID`
-- `REACT_APP_EMAILJS_TEMPLATE_ID` 
-- `REACT_APP_EMAILJS_PUBLIC_KEY`
-
-### Setup
-- **Local**: Create `.env` file in root directory
-- **Production**: Add as GitHub Secrets in repository settings
-
-The contact form will show an error if these variables are not configured.
-
-## 🎨 UI/UX Features
-
-- **Dark Theme**: Modern dark theme with carefully chosen purple accents
-- **Interactive Elements**: Hover states, transitions, and micro-interactions
-- **Custom Animations**: Smooth page transitions and component animations
-- **Responsive Images**: Optimized loading with WebP format and srcset
-- **Performance Metrics**:
-  - Lighthouse Score: 95+ on all metrics
-  - First Contentful Paint: < 1s
-  - Time to Interactive: < 2s
-
-## 📊 Code Quality
-
-- **Static Analysis**: ESLint (`react-app` / `react-app/jest` presets)
-- **Formatting**: Default CRA conventions
-- **Build**: `react-scripts` build with production optimizations
-
-## 📱 Responsive Design Strategy
-
-| Breakpoint | Target Devices | Layout Changes                                          |
-| ---------- | -------------- | ------------------------------------------------------- |
-| ≤ 768px    | Mobile         | Timeline flips to vertical stack; nav collapses         |
-| > 768px    | Desktop        | Horizontal Gantt timeline with proportional-length bars |
-
-## 🚀 Deployment
-
-Manual deployment to GitHub Pages via `gh-pages`:
-
-```bash
-npm run build   # produces build/
-npm run deploy  # gh-pages -d build → pushes to gh-pages branch
 ```
-
-- `homepage` field in `package.json` points at `https://rsaim.github.io`
-- Custom domain preserved via root-level `CNAME` file (`www.rsaim.info`)
-- GitHub Pages auto-serves from `gh-pages` branch after push (~1 min)
-- No CI/CD workflows are wired up; deploy runs from the maintainer's local environment
-
-## 🔒 Domain & GitHub Pages Verification
-
-After making any changes to the repository, verify the following:
-
-### CNAME File Check
-- [ ] Verify CNAME file exists in the root directory
-- [ ] Confirm CNAME contains exactly: `www.rsaim.info` (no http/https prefix)
-- [ ] Check if recent changes accidentally modified/deleted the CNAME file
-
-### GitHub Pages Settings
-- [ ] Go to repository → Settings → Pages
-- [ ] Verify custom domain is configured as `www.rsaim.info`
-- [ ] Confirm "Enforce HTTPS" is enabled
-- [ ] Wait for GitHub Pages to finish deployment
-- [ ] Test the live site at https://www.rsaim.info
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) first.
-
-```bash
-# Development workflow
-git checkout -b feature/new-feature
-npm test
-git commit -m "feat: add new feature"
-git push origin feature/new-feature
+src/
+  config/          profile.json (git-ignored, real data) + profile.example.json (template)
+                    assetMap.js (image key -> bundled asset wiring)
+  components/       Home, Navbar, Footer, Projects, Contact, etc.
+  Assets/           images referenced via assetMap.js
+public/             static HTML template, favicon, manifest
 ```
-
-## 📬 Let's Connect
-
-I'm always interested in new opportunities and collaborations. Feel free to reach out!
-
-<div align="center">
-  <a href="https://rsaim.info/contact">
-    <img src="https://img.shields.io/badge/Contact-Me-purple?style=for-the-badge&logo=gmail" alt="Contact Me" />
-  </a>
-</div>
-
----
-
-<div align="center">
-  <sub>Built with 💜 by Saim Raza | © 2024 All Rights Reserved</sub>
-</div>

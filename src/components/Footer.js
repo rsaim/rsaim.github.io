@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { AiFillGithub, AiFillInstagram } from "react-icons/ai";
-import { FaLinkedinIn, FaStackOverflow } from "react-icons/fa";
+import profile from "../config/profile.json";
+import socialLinks from "./socialLinks";
 
 function Footer() {
   let date = new Date();
@@ -11,50 +11,25 @@ function Footer() {
       <Row>
         <Col md="4" className="footer-copywright"></Col>
         <Col md="4" className="footer-copywright">
-          <h3>Copyright © {year} SR</h3>
+          <h3>
+            Copyright © {year} {profile.identity.initials}
+          </h3>
         </Col>
         <Col md="4" className="footer-body">
           <ul className="footer-icons">
-            <li className="social-icons">
-              <a
-                href="https://github.com/rsaim"
-                style={{ color: "white" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiFillGithub />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://www.linkedin.com/in/raza-saim/"
-                style={{ color: "white" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedinIn />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://stackoverflow.com/users/6463555/saim-raza"
-                style={{ color: "white" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaStackOverflow />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://www.instagram.com/rsa.im/"
-                style={{ color: "white" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiFillInstagram />
-              </a>
-            </li>
+            {socialLinks.map(({ key, href, label, Icon }) => (
+              <li className="social-icons" key={key}>
+                <a
+                  href={href}
+                  style={{ color: "white" }}
+                  target={key === "email" ? undefined : "_blank"}
+                  rel={key === "email" ? undefined : "noopener noreferrer"}
+                  aria-label={label}
+                >
+                  <Icon />
+                </a>
+              </li>
+            ))}
           </ul>
         </Col>
       </Row>
