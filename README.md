@@ -3,6 +3,8 @@
 A React portfolio site — career timeline, project showcase, contact form —
 built to be forked and filled in with your own data.
 
+![Portfolio home page, showing the intro section and career timeline](docs/screenshot.png)
+
 ## Run it (no config needed)
 
 ```bash
