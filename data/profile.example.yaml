@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=./profile.schema.json
+identity:
+  name: Your Name
+  initials: YN
+  tagline: Your Title — What You Do
+  avatarKey: null
+contact:
+  email: you@example.com
+  emailJsToName: Your Name
+socials:
+  github:
+    url: https://github.com/your-username
+    username: your-username
+  linkedin:
+    url: https://www.linkedin.com/in/your-username/
+  stackoverflow:
+    url: https://stackoverflow.com/users/0000000/your-username
+  instagram:
+    url: https://www.instagram.com/your-username/
+home:
+  headline: Your Title — What You Do
+  bioParagraphs:
+    - Write a short paragraph about what you're building right now.
+    - Write a second paragraph about your background and prior experience.
+  highlightTerms: []
+  typewriterStrings:
+    - Your Title @ Your Company
+    - A key skill or focus area
+    - Something else you're great at
+timeline:
+  - id: example-job
+    lane: work
+    company: Example Company
+    title: Your Role
+    location: Your City
+    start: 2022-01
+    end: null
+    color: '#a855f7'
+  - id: example-school
+    lane: edu
+    company: Example University
+    title: Your Degree
+    location: Your City
+    start: 2016-08
+    end: 2020-05
+    color: '#d946ef'
+projects:
+  example:
+    title: Example Section
+    projects:
+      - imgKey: null
+        isBlog: false
+        title: Example Project
+        description: Describe a project you built — what it does and why it's interesting.
+        technologies:
+          - Tech 1
+          - Tech 2
+        link: '#'

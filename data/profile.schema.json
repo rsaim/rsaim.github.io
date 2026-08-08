@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://rsaim.github.io/data/profile.schema.json",
+  "title": "Portfolio profile data",
+  "description": "Schema for data/profile.yaml — see data/profile.example.yaml for a filled-in example.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["identity", "contact", "socials", "home", "timeline", "projects"],
+  "properties": {
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "initials", "tagline", "avatarKey"],
+      "properties": {
+        "name": { "type": "string" },
+        "initials": { "type": "string", "description": "Shown in the navbar brand and footer copyright line." },
+        "tagline": { "type": "string" },
+        "avatarKey": {
+          "type": ["string", "null"],
+          "description": "Key into assetMap.avatar (see src/config/assetMap.js), or null to hide the avatar."
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["email", "emailJsToName"],
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "emailJsToName": { "type": "string", "description": "The `to_name` EmailJS template variable." }
+      }
+    },
+    "socials": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["github", "linkedin", "stackoverflow", "instagram"],
+      "properties": {
+        "github": { "$ref": "#/definitions/socialLinkWithUsername" },
+        "linkedin": { "$ref": "#/definitions/socialLink" },
+        "stackoverflow": { "$ref": "#/definitions/socialLink" },
+        "instagram": { "$ref": "#/definitions/socialLink" }
+      }
+    },
+    "home": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["headline", "bioParagraphs", "highlightTerms", "typewriterStrings"],
+      "properties": {
+        "headline": { "type": "string" },
+        "bioParagraphs": { "type": "array", "items": { "type": "string" } },
+        "highlightTerms": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Substrings of bioParagraphs to bold-render (e.g. company names)."
+        },
+        "typewriterStrings": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/timelineEntry" }
+    },
+    "projects": {
+      "type": "object",
+      "description": "Keyed by section id (used as the DOM id for that section).",
+      "additionalProperties": { "$ref": "#/definitions/projectSection" }
+    }
+  },
+  "definitions": {
+    "socialLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "socialLinkWithUsername": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "username"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "username": { "type": "string" }
+      }
+    },
+    "timelineEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "lane", "company", "title", "location", "start", "end", "color"],
+      "properties": {
+        "id": { "type": "string", "description": "Unique, used as the React key and detail-panel selector." },
+        "lane": { "type": "string", "enum": ["work", "edu", "side"] },
+        "kind": {
+          "type": "string",
+          "enum": ["point"],
+          "description": "Set to 'point' for a single-date event rendered as a dot instead of a bar (e.g. a talk)."
+        },
+        "company": { "type": "string" },
+        "title": { "type": "string" },
+        "location": { "type": "string" },
+        "start": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}$", "description": "YYYY-MM" },
+        "end": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{4}-[0-9]{2}$",
+          "description": "YYYY-MM, or null if this is ongoing."
+        },
+        "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "logoKey": {
+          "type": "string",
+          "description": "Key into assetMap.logos (a bundled local image). Use this OR logoUrl, not both."
+        },
+        "logoUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "A fully-resolved logo image URL (e.g. a CDN link). Use this OR logoKey, not both."
+        }
+      }
+    },
+    "projectSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "projects"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Rendered as the section heading. A ' - ' splits it into a bold prefix + suffix."
+        },
+        "projects": { "type": "array", "items": { "$ref": "#/definitions/projectEntry" } }
+      }
+    },
+    "projectEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["imgKey", "isBlog", "title", "description", "technologies", "link"],
+      "properties": {
+        "imgKey": {
+          "type": ["string", "null"],
+          "description": "Key into assetMap.projects (a bundled local image), or null for no preview image."
+        },
+        "isBlog": { "type": "boolean", "description": "Shows a 'Blog Post' badge and 'Read Article' label instead of 'Project'." },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "technologies": { "type": "array", "items": { "type": "string" } },
+        "link": {
+          "type": ["string", "null"],
+          "description": "Project URL. Use '#' or null to hide the link/preview affordance entirely."
+        }
+      }
+    }
+  }
+}

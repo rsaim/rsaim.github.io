@@ -6,13 +6,16 @@
 // `npm start`/`npm run build`/`npm test` (wired via the pre* npm lifecycle
 // hooks in package.json).
 //
-// data/profile.json is the canonical file you edit. It can't be imported
-// directly by component code, though — Create React App's ModuleScopePlugin
-// blocks imports from outside src/. So this script also syncs it into
-// src/config/profile.json, which is what the app actually imports. That
-// synced copy is fully derived — always overwritten, never edited by hand.
+// data/profile.yaml is the canonical file you edit — YAML for
+// readability. It can't be imported directly by component code, though:
+// Create React App's ModuleScopePlugin blocks imports from outside src/,
+// and CRA has no built-in YAML loader anyway. So this script parses it
+// and writes the equivalent JSON to src/config/profile.json, which is
+// what the app actually imports. That JSON copy is fully derived —
+// always overwritten, never edited by hand.
 const fs = require("fs");
 const path = require("path");
+const yaml = require("js-yaml");
 
 function ensure(exampleRelPath, realRelPath) {
   const example = path.join(__dirname, "..", exampleRelPath);
@@ -26,15 +29,16 @@ function ensure(exampleRelPath, realRelPath) {
   );
 }
 
-function sync(sourceRelPath, destRelPath) {
-  const source = path.join(__dirname, "..", sourceRelPath);
-  const dest = path.join(__dirname, "..", destRelPath);
-  fs.copyFileSync(source, dest);
+function syncYamlToJson(yamlRelPath, jsonRelPath) {
+  const yamlPath = path.join(__dirname, "..", yamlRelPath);
+  const jsonPath = path.join(__dirname, "..", jsonRelPath);
+  const data = yaml.load(fs.readFileSync(yamlPath, "utf8"));
+  fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2) + "\n");
 }
 
-ensure("data/profile.example.json", "data/profile.json");
+ensure("data/profile.example.yaml", "data/profile.yaml");
 ensure(".env.example", ".env");
 
-// Always re-sync, even when data/profile.json already existed — this is how
+// Always re-sync, even when data/profile.yaml already existed — this is how
 // edits to the canonical file reach the app.
-sync("data/profile.json", "src/config/profile.json");
+syncYamlToJson("data/profile.yaml", "src/config/profile.json");

@@ -16,7 +16,8 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "dsznajder.es7-react-js-snippets",
-        "anthropic.claude-code"
+        "anthropic.claude-code",
+        "redhat.vscode-yaml"
       ]
     }
   }

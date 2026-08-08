@@ -1,9 +1,10 @@
-// Maps the string keys used in data/profile.json (synced into this
-// directory as profile.json by scripts/ensure-local-config.js — see there)
-// to the actual bundled image modules. JSON can't `import` a webpack asset,
-// so this is the bridge between pure data and the binary assets checked
-// into src/Assets/. This file carries no personal content — only wiring —
-// so it stays tracked even though profile.json (the real data) does not.
+// Maps the string keys used in data/profile.yaml (parsed and synced into
+// this directory as profile.json by scripts/ensure-local-config.js — see
+// there) to the actual bundled image modules. JSON/YAML can't `import` a
+// webpack asset, so this is the bridge between pure data and the binary
+// assets checked into src/Assets/. This file carries no personal content —
+// only wiring — so it stays tracked even though profile.json (the real
+// data) does not.
 import avatarImg from "../Assets/saim-avatar.png";
 
 import drdoLogo from "../Assets/logos/drdo.png";

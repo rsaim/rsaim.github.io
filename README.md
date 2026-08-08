@@ -11,29 +11,36 @@ lives in a single git-ignored data file, not in component source:
 
 1. Fork/clone the repo.
 2. Run `npm install`.
-3. Run `npm start` once — this auto-creates `data/profile.json` (from
-   `data/profile.example.json`) and `.env` (from `.env.example`) via
+3. Run `npm start` once — this auto-creates `data/profile.yaml` (from
+   `data/profile.example.yaml`) and `.env` (from `.env.example`) via
    `scripts/ensure-local-config.js`, if they don't already exist.
-4. Edit `data/profile.json` with your own identity, timeline, projects, and
+4. Edit `data/profile.yaml` with your own identity, timeline, projects, and
    social links. Edit `.env` with your site title/description and (if you
    want a working contact form) your EmailJS credentials.
 5. Restart `npm start`.
 
-Both `data/profile.json` and `.env` are git-ignored (see `.gitignore`) —
-your real data never gets committed. `data/profile.example.json` and
+Both `data/profile.yaml` and `.env` are git-ignored (see `.gitignore`) —
+your real data never gets committed. `data/profile.example.yaml` and
 `.env.example` are the tracked templates that ship with the repo.
 
-`data/profile.json` is the file you edit, but component code can't import
+`data/profile.yaml` is the file you edit, but component code can't import
 it directly from there — Create React App blocks imports from outside
-`src/`. So the same bootstrap script also syncs it into
-`src/config/profile.json`, a derived, git-ignored, auto-regenerated copy
-that's what the app actually imports. Don't edit `src/config/profile.json`
-by hand; edit `data/profile.json` and restart.
+`src/`, and has no YAML loader anyway. So the same bootstrap script parses
+it and writes the equivalent JSON to `src/config/profile.json`, a derived,
+git-ignored, auto-regenerated copy that's what the app actually imports.
+Don't edit `src/config/profile.json` by hand; edit `data/profile.yaml` and
+restart.
 
-If you add or change images referenced from `profile.json` (timeline company
+If you add or change images referenced from `profile.yaml` (timeline company
 logos, project screenshots, your avatar), wire them up in
-`src/config/assetMap.js` — JSON can't `import` a bundled asset, so that file
-is the bridge between the two.
+`src/config/assetMap.js` — JSON/YAML can't `import` a bundled asset, so that
+file is the bridge between the two.
+
+`data/profile.schema.json` documents the full shape (with field
+descriptions) and drives editor autocomplete/validation in VS Code via the
+`# yaml-language-server: $schema=./profile.schema.json` line at the top of
+both YAML files — install the [YAML extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
+(already included if you're using the devcontainer) to get it.
 
 ## Key features
 
@@ -90,12 +97,13 @@ npm run deploy   # gh-pages -d build → pushes to the gh-pages branch
 
 ```
 data/
-  profile.json              git-ignored, real data — edit this
-  profile.example.json      tracked template
+  profile.yaml               git-ignored, real data — edit this
+  profile.example.yaml       tracked template
+  profile.schema.json        drives editor autocomplete/validation for both
 
 src/
   config/
-    profile.json      auto-generated, git-ignored copy of data/profile.json (don't edit)
+    profile.json      auto-generated, git-ignored JSON copy of data/profile.yaml (don't edit)
     assetMap.js        image key -> bundled asset wiring
   components/           Home, Navbar, Footer, Projects, Contact, etc.
   Assets/                images referenced via assetMap.js
