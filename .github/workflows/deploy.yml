@@ -1,0 +1,71 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# Only one deploy at a time; let an in-flight run finish rather than racing it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # data/profile.yaml and .env are git-ignored (real personal data / API
+      # keys never get committed) — write them here from repo secrets before
+      # building. scripts/ensure-local-config.js (run automatically via the
+      # npm "prebuild" hook below) only falls back to the example/placeholder
+      # files when these are missing, so writing them first is what makes
+      # the CI build render your real data instead of template placeholders.
+      - name: Write data/profile.yaml from secret
+        run: |
+          cat > data/profile.yaml <<'EOF'
+          ${{ secrets.PROFILE_YAML }}
+          EOF
+
+      - name: Write .env from secrets
+        run: |
+          cat > .env <<'EOF'
+          REACT_APP_SITE_TITLE=${{ secrets.REACT_APP_SITE_TITLE }}
+          REACT_APP_SITE_DESCRIPTION=${{ secrets.REACT_APP_SITE_DESCRIPTION }}
+          REACT_APP_EMAILJS_SERVICE_ID=${{ secrets.REACT_APP_EMAILJS_SERVICE_ID }}
+          REACT_APP_EMAILJS_TEMPLATE_ID=${{ secrets.REACT_APP_EMAILJS_TEMPLATE_ID }}
+          REACT_APP_EMAILJS_PUBLIC_KEY=${{ secrets.REACT_APP_EMAILJS_PUBLIC_KEY }}
+          EOF
+
+      - run: npm run build
+
+      - run: touch build/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
