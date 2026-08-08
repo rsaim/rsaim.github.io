@@ -271,19 +271,25 @@ function TechStack() {
             gap: "20px",
           }}
         >
+          {/* These are fixed-width external SVG badges; without max-width
+              they overflow narrow viewports and force the page to scroll
+              horizontally. */}
           <img
             src={`https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&locale=en&layout=compact&hide=html,css,scss,php,mako`}
             alt={username}
+            style={{ maxWidth: "100%", height: "auto" }}
           />
 
           <img
             src={`https://github-readme-streak-stats.herokuapp.com/?user=${username}&`}
             alt={username}
+            style={{ maxWidth: "100%", height: "auto" }}
           />
 
           <img
             src={`https://komarev.com/ghpvc/?username=${username}&label=Profile%20views&color=0e75b6&style=flat`}
             alt={username}
+            style={{ maxWidth: "100%", height: "auto" }}
           />
         </div>
       </Container>
