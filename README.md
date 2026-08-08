@@ -46,12 +46,29 @@ source (Settings → Pages → Build and deployment → Source).
 Since `data/profile.yaml` and `.env` aren't in git, the workflow needs your
 real values as repo secrets (Settings → Secrets and variables → Actions):
 `PROFILE_YAML` (full contents of your `data/profile.yaml`),
-`REACT_APP_SITE_TITLE`, `REACT_APP_SITE_DESCRIPTION`, and — if you set up
-the contact form — the three `REACT_APP_EMAILJS_*` values from
+`REACT_APP_SITE_TITLE`, `REACT_APP_SITE_DESCRIPTION`, `REACT_APP_SITE_URL`,
+`REACT_APP_CF_BEACON_TOKEN` (optional — see below), and — if you set up the
+contact form — the three `REACT_APP_EMAILJS_*` values from
 `CONTACT_IMPLEMENTATION_GUIDE.md`.
 
-If you're using a different domain, update `homepage` in `package.json` and
-the root `CNAME` file.
+If you're using a different domain, update `homepage` in `package.json`, the
+root `CNAME` file, `public/sitemap.xml`, and the `Sitemap:` line in
+`public/robots.txt`.
+
+## SEO & analytics
+
+- `public/index.html`'s title/description/canonical/OG/Twitter tags are all
+  driven by `REACT_APP_SITE_TITLE`/`_DESCRIPTION`/`_URL` in `.env` — no
+  per-fork edits to `index.html` needed. `public/og-image.png` is the social
+  preview image; swap it for your own.
+- A schema.org `Person` block (name, tagline, social links) is injected at
+  runtime from `profile.yaml` — see `src/components/StructuredData.js`.
+- `public/404.html` redirects direct hits on React Router routes (e.g.
+  `/project`) back into the app — GitHub Pages has no server-side router of
+  its own, so without it those URLs 404 instead of loading the SPA.
+- Traffic is tracked via [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/)
+  (cookieless, no consent banner needed) — set `REACT_APP_CF_BEACON_TOKEN`
+  to enable it, or leave it blank to disable.
 
 ## Local development
 

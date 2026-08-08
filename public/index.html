@@ -9,25 +9,51 @@
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <title>%REACT_APP_SITE_TITLE%</title>
   <meta name="description" content="%REACT_APP_SITE_DESCRIPTION%">
+  <link rel="canonical" href="%REACT_APP_SITE_URL%/">
 
   <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content="%REACT_APP_SITE_TITLE%">
   <meta itemprop="description" content="%REACT_APP_SITE_DESCRIPTION%">
+  <meta itemprop="image" content="%REACT_APP_SITE_URL%/og-image.png">
 
   <!-- Facebook Meta Tags -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="%REACT_APP_SITE_URL%/">
   <meta property="og:title" content="%REACT_APP_SITE_TITLE%">
   <meta property="og:description" content="%REACT_APP_SITE_DESCRIPTION%">
+  <meta property="og:image" content="%REACT_APP_SITE_URL%/og-image.png">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="%REACT_APP_SITE_TITLE%">
   <meta name="twitter:description" content="%REACT_APP_SITE_DESCRIPTION%">
+  <meta name="twitter:image" content="%REACT_APP_SITE_URL%/og-image.png">
+
+  <script>
+    // Single Page Apps for GitHub Pages — https://github.com/rafgraph/spa-github-pages
+    // Companion to public/404.html: decodes the redirected path back into
+    // real history before React Router mounts and reads window.location.
+    (function (l) {
+      if (l.search[1] === "/") {
+        var decoded = l.search.slice(1).split("&").map(function (s) {
+          return s.replace(/~and~/g, "&");
+        }).join("?");
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location));
+  </script>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
+
+  <!-- Cloudflare Web Analytics (https://www.cloudflare.com/web-analytics/) -
+       cookieless, no consent banner needed. No-ops if the token is unset. -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "%REACT_APP_CF_BEACON_TOKEN%"}'></script>
 </body>
 
 </html>
